@@ -1,0 +1,16 @@
+page-sign-up {
+  ion-input {
+    ::placeholder {
+      font-weight: bold;
+    }
+  }
+
+  ion-label {
+    font-weight: bold;
+  }
+
+  .sign-up {
+    margin-top: 10%;
+    width: 80%;
+  }
+}

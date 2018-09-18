@@ -1,0 +1,7 @@
+{
+  "name": "DH Apparel",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
