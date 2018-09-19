@@ -8,11 +8,28 @@ let bigCommerceV3
 
 router.get('/retrieve-all-products', (req, res, next) => {
   bigCommerceV3 = req.bigCommerceV3
-  bigCommerceV3.get('/catalog/producsts?include=images')
+  bigCommerceV3.get('/catalog/products?include=images')
     .then(productArray => {
       res.json({
         responseStatus: true,
         result: productArray
+      })
+    })
+    .catch(err => {
+      res.json({
+        responseStatus: false,
+        error: err
+      })
+    })
+})
+
+router.post('/product-detail', (req, res, next) => {
+  bigCommerceV3 = req.bigCommerceV3
+  bigCommerceV3.get('/catalog/products/' + req.body.productId + '?include=images,variants')
+    .then(productDetail => {
+      res.json({
+        responseStatus: true,
+        result: productDetail
       })
     })
     .catch(err => {
@@ -47,11 +64,7 @@ router.get('/retrieve-all-products', (req, res, next) => {
 //         })
 // });
 
-// router.post('/product-detail', (req, res, next) => {
-//     bigCommerceV3 = req.bigCommerceV3;
-//     bigCommerceV3.get('/catalog/products/' + req.body.productId + '?include=images,variants')
-//         .then(data => res.json(data));
-// });
+
 
 // router.post('/banner', (req, res, next) => {
 //     bigCommerce = req.bigCommerce;
