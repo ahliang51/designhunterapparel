@@ -5,14 +5,19 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title *ngIf="productDetail">{{productDetail.name}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-slides pager="true" *ngIf="productDetail" parallax="true" zoom="true">
+    <ion-slide *ngFor="let image of productDetail.images">
+      <!-- <img-loader src="{{image.url_standard}}"></img-loader> -->
+      <img src="{{image.url_standard}}" class="product-images">
+    </ion-slide>
+  </ion-slides>
+  <ion-label [innerHtml]="productDetail.description" *ngIf="productDetail">
+  </ion-label>
 </ion-content>

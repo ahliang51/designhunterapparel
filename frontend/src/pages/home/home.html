@@ -21,7 +21,8 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let product of productArray" col-6 (click)="onProductDetail(product.id)">
-        <img src="{{product.images[0].url_standard}}">
+        <!-- <img src="{{product.images[0].url_standard}}"> -->
+        <img-loader src="{{product.images[0].url_standard}}" useImg></img-loader>
         <ion-label>
           {{product.name}}
         </ion-label>

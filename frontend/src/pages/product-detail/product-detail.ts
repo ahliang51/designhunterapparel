@@ -18,6 +18,7 @@ export class ProductDetailPage {
 
   productId;
   productDetail;
+  imageArray;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -42,6 +43,8 @@ export class ProductDetailPage {
       loading.dismiss();
       console.log(productDetail.result.data)
       this.productDetail = productDetail.result.data;
+      this.imageArray = productDetail.result.data.images.sort();
+      console.log(this.imageArray)
     })
   }
 

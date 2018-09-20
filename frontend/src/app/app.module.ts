@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -30,6 +31,7 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
             scrollPadding: false,
             scrollAssist: false
         }),
+        IonicImageLoader.forRoot()
     ],
     bootstrap: [IonicApp],
     entryComponents: [
