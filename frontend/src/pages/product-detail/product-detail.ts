@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
+import _ from 'underscore';
 
 /**
  * Generated class for the ProductDetailPage page.
@@ -43,8 +44,7 @@ export class ProductDetailPage {
       loading.dismiss();
       console.log(productDetail.result.data)
       this.productDetail = productDetail.result.data;
-      this.imageArray = productDetail.result.data.images.sort();
-      console.log(this.imageArray)
+      this.imageArray = _.sortBy(productDetail.result.data.images, 'sort_order');
     })
   }
 

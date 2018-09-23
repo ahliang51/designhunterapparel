@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
 import { ProductDetailPage } from '../product-detail/product-detail';
+import _ from 'underscore';
 
 @Component({
   selector: 'page-home',
@@ -34,7 +35,15 @@ export class HomePage {
       console.log(products)
       loading.dismiss();
       if (products.responseStatus) {
-        this.productArray = products.result.data
+        for (let product of products.result.data) {
+          this.productArray.push({
+            id: product.id,
+            name: product.name,
+            images: _.sortBy(product.images, 'sort_order'),
+            price: product.price
+          })
+        }
+        console.log(this.productArray);
       }
       else {
         let alert = this.alertCtrl.create({
