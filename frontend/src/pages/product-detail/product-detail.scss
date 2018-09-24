@@ -1,13 +1,36 @@
 page-product-detail {
-  .product-images {
-    width: 100%;
+
+  ion-header {
+    // height:
   }
 
-  .slide-zoom {
-    height: 100%;
+  ion-content {
+    .product-images {
+      width: 100%;
+    }
+
+    .main-content {
+      width: 100%;
+      background-color: white;
+    }
+
+    .product-detail-first-row {
+      height: 10vh;
+    }
+
+    .product-name {
+      font-size: 1.2em;
+    }
+
+    .addToBagButton {
+      width: 80%;
+    }
+
+    ion-select {
+      width: 80%;
+    }
+
   }
 
-  .scroll {
-    height: 100%;
-  }
+
 }

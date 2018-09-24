@@ -4,24 +4,37 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header no-border>
-  <ion-navbar transparent>
-    <ion-title *ngIf="productDetail">{{productDetail.name}}</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="briefcase"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
 
-<ion-content parallax-header>
-  <ion-slides pager="true" *ngIf="productDetail" parallax="true" zoom="true">
-    <ion-slide *ngFor="let image of imageArray">
-      <!-- <img-loader src="{{image.url_standard}}"></img-loader> -->
-      <img src="{{image.url_standard}}" class="product-images">
-    </ion-slide>
-  </ion-slides>
-  <ion-label [innerHtml]="productDetail.description" *ngIf="productDetail">
-  </ion-label>
+
+<ion-content parallax-header fullscreen no-padding>
+  <ion-header no-border>
+    <ion-navbar transparent>
+      <ion-buttons end>
+        <button ion-button icon-only>
+          <ion-icon name="briefcase"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  <div class="header-image">
+    <ion-slides pager="true" *ngIf="productDetail" parallax="true" zoom="true">
+      <ion-slide *ngFor="let image of imageArray">
+        <!-- <img-loader src="{{image.url_standard}}"></img-loader> -->
+        <img src="{{image.url_standard}}" class="product-images">
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div class="main-content">
+    <ion-item>
+      <ion-select [(ngModel)]="gender" placeholder="Choose Gender" padding class="select-option">
+        <ion-option value="f">Female</ion-option>
+        <ion-option value="m">Male</ion-option>
+      </ion-select>
+    </ion-item>
+    <div text-center *ngIf="productDetail">
+      <button ion-button color="dark" class="addToBagButton">Add to Bag</button>
+    </div>
+    <ion-label [innerHtml]="productDetail.description" *ngIf="productDetail">
+    </ion-label>
+  </div>
 </ion-content>

@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { IonicImageLoader } from 'ionic-image-loader';
+import { ParallaxHeaderDirective } from '../directives/parallax-header/parallax-header';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -15,6 +16,7 @@ import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ProductProvider } from '../providers/product/product';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
 
+
 @NgModule({
     declarations: [
         MyApp,
@@ -22,7 +24,8 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
         ListPage,
         LoginPage,
         SignUpPage,
-        ProductDetailPage
+        ProductDetailPage,
+        ParallaxHeaderDirective
     ],
     imports: [
         BrowserModule,
