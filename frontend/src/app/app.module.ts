@@ -15,6 +15,7 @@ import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ProductProvider } from '../providers/product/product';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
+import { WheelSelector } from '@ionic-native/wheel-selector';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
             scrollPadding: false,
             scrollAssist: false
         }),
-        IonicImageLoader.forRoot()
+        IonicImageLoader.forRoot(),
+
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -49,7 +51,8 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
         StatusBar,
         SplashScreen,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
-        ProductProvider
+        ProductProvider,
+        WheelSelector,
     ]
 })
 export class AppModule { }

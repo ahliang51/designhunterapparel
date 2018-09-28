@@ -26,6 +26,10 @@
               <ion-input placeholder="First Name" type="text" formControlName="firstName">
               </ion-input>
             </ion-item>
+            <ion-label *ngIf="signUp.controls.firstName.errors && (signUp.controls.firstName.touched || signUp.controls.firstName.dirty)"
+              padding-left class="error-text">
+              Please input first name
+            </ion-label>
           </ion-col>
           <ion-col>
             <ion-item no-lines>
@@ -35,6 +39,10 @@
               <ion-input placeholder="Last Name" type="text" formControlName="lastName">
               </ion-input>
             </ion-item>
+            <ion-label *ngIf="signUp.controls.lastName.errors && (signUp.controls.lastName.touched || signUp.controls.lastName.dirty)"
+              padding-left class="error-text">
+              Please input first name
+            </ion-label>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -46,7 +54,10 @@
         <ion-input placeholder="Email" type="email" formControlName="email">
         </ion-input>
       </ion-item>
-
+      <ion-label *ngIf="signUp.controls.email.errors && (signUp.controls.email.touched || signUp.controls.email.dirty)"
+        padding-left class="error-text">
+        Incorrect email format
+      </ion-label>
       <ion-item>
         <ion-label>
           <ion-icon name="key" item-left></ion-icon>
@@ -54,7 +65,16 @@
         <ion-input placeholder="Password" type="password" formControlName="password">
         </ion-input>
       </ion-item>
-
+      <ion-label *ngIf="signUp.controls.password.errors?.required && (signUp.controls.password.touched || signUp.controls.password.dirty)"
+        padding-left class="error-text">
+        Please input password
+      </ion-label>
+      <ion-label *ngIf="signUp.controls.password.errors?.pattern && (signUp.controls.password.touched || signUp.controls.password.dirty)"
+        padding-left class="error-text">
+        Passwords must be at least 7 characters <br>
+        and contain both alphabetic <br>
+        and numeric characters.
+      </ion-label>
       <ion-item>
         <ion-label>
           <ion-icon name="key" item-left></ion-icon>
@@ -62,8 +82,12 @@
         <ion-input placeholder="Confirm Password" type="password" formControlName="confirmPassword">
         </ion-input>
       </ion-item>
+      <ion-label *ngIf="signUp.controls.confirmPassword.errors && (signUp.controls.confirmPassword.touched || signUp.controls.confirmPassword.dirty)"
+        padding-left class="error-text">
+        Password is not the same
+      </ion-label>
 
-      <div text-center (click)="onSignUp()">
+      <div text-center>
         <button ion-button round class="sign-up" type="submit" [disabled]="!signUp.valid">Sign Up</button>
       </div>
     </ion-list>

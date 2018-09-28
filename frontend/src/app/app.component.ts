@@ -14,7 +14,7 @@ import { SignUpPage } from '../pages/sign-up/sign-up';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -24,7 +24,8 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Account', component: ListPage }
+      { title: 'Account', component: ListPage },
+      { title: 'Log Out', component: LoginPage }
     ];
 
   }

@@ -22,15 +22,36 @@ page-product-detail {
       font-size: 1.2em;
     }
 
-    .addToBagButton {
+    .add-to-bag {
       width: 80%;
     }
 
-    ion-select {
-      width: 80%;
+    .select-option-button {
+      width: 92.5%;
+      margin-top: 5%;
     }
 
+    .add-to-bag-icon {
+      margin-left: 5%;
+      font-size: 1.5em;
+    }
+
+    .arrow-icon {
+      margin-left: 5%;
+      font-size: 1.5em;
+    }
+
+    .product-price {
+      text-align: right;
+    }
+
+    .segment-button {
+      font-size: 1.05em !important;
+    }
+
+    .detail-label {
+      border: 1px solid black;
+      padding: 1% !important;
+    }
   }
-
-
 }

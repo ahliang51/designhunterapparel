@@ -7,4 +7,13 @@ page-home {
     padding: 0 !important;
     margin: 0 !important;
   }
+
+  ion-badge {
+    background-color: red !important;
+    position: absolute;
+    top: 15px;
+    right: -5px;
+    border-radius: 20px !important;
+    font-size: 0.4em;
+  }
 }

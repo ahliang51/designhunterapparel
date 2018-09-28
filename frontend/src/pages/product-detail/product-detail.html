@@ -20,21 +20,48 @@
     <ion-slides pager="true" *ngIf="productDetail" parallax="true" zoom="true">
       <ion-slide *ngFor="let image of imageArray">
         <!-- <img-loader src="{{image.url_standard}}"></img-loader> -->
-        <img src="{{image.url_standard}}" class="product-images">
+        <img src="{{image.url_zoom}}" class="product-images" [ngStyle]="{
+          'height' : getDeviceHeight()
+        }">
       </ion-slide>
     </ion-slides>
   </div>
   <div class="main-content">
-    <ion-item>
-      <ion-select [(ngModel)]="gender" placeholder="Choose Gender" padding class="select-option">
-        <ion-option value="f">Female</ion-option>
-        <ion-option value="m">Male</ion-option>
-      </ion-select>
+    <ion-item *ngIf="productDetail" no-lines>
+      <ion-label>
+        {{productDetail.name}}
+      </ion-label>
+      <ion-label class="product-price">
+        {{productDetail.price}}
+      </ion-label>
     </ion-item>
     <div text-center *ngIf="productDetail">
-      <button ion-button color="dark" class="addToBagButton">Add to Bag</button>
+      <button ion-button color="primary" (click)="selectOption()" class="select-option-button">
+        {{selectedOption}}
+        <ion-icon name="arrow-dropdown-circle" class="arrow-icon"></ion-icon>
+      </button>
+
     </div>
-    <ion-label [innerHtml]="productDetail.description" *ngIf="productDetail">
-    </ion-label>
+    <ion-item>
+      <ion-grid no-padding>
+        <ion-row *ngIf="productDetail">
+          <ion-col text-center class="detail-label">
+            DETAILS
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label [innerHtml]="productDetail.description" *ngIf="productDetail">
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <div text-center *ngIf="productDetail">
+      <button ion-button color="dark" class="add-to-bag">Add to Bag
+        <ion-icon name="briefcase" class="add-to-bag-icon"></ion-icon>
+      </button>
+    </div>
   </div>
 </ion-content>

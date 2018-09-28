@@ -2,11 +2,10 @@
 //Import
 let express = require('express'),
     router = express.Router(),
-    bodyParser = require('body-parser'),
     async = require('async'),
-    uuidv4 = require('uuid/v4'),
-    config = require('../config/config'),
-    db, jwt, bigCommerce, bigCommerceV3;
+        uuidv4 = require('uuid/v4'),
+        config = require('../config/config'),
+        db, jwt, bigCommerce, bigCommerceV3;
 
 router.post('/create-cart', (req, res, next) => {
     bigCommerceV3 = req.bigCommerceV3;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { PasswordValidation } from '../../shared/password.validator'
 
 /**
  * Generated class for the SignUpPage page.
@@ -21,14 +22,17 @@ export class SignUpPage implements OnInit {
   private signUp: FormGroup;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public menu: MenuController) {
     this.signUp = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(7), Validators.pattern('^[A-Za-z0-9]{7,}$')]],
       confirmPassword: ['', Validators.required],
-    });
+    }, { validator: PasswordValidation.MatchPassword });
   }
 
   ngOnInit() {
@@ -43,8 +47,16 @@ export class SignUpPage implements OnInit {
     console.log('ionViewDidLoad SignUpPage');
   }
 
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
+  }
+
+  ionViewWillLeave() {
+    this.menu.swipeEnable(true);
+  }
+
   signUpForm(signUpForm) {
-    console.log(signUpForm.value);
+    console.log(signUpForm);
   }
 
 }
