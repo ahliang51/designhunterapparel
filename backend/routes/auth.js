@@ -2,18 +2,149 @@
 // Import
 let express = require('express')
 let router = express.Router()
-// let async = require('async')
-// let config = require('../config/config')
+let async = require('async')
+let config = require('../config/config')
 // db, jwt, bigCommerce, bigCommerceV3;
 
-
-// Writing for sign up 
+// Writing for sign up
 router.post('/sign-up', (req, res, next) => {
+  let bigCommerce = req.bigCommerce
+  let jwt = req.jwt;
 
+  async.waterfall([
+    checkEmailExist,
+    createUser,
+    generateToken
+  ], function (err, result) {
+    if (err) {
+      res.json({
+        responseStatus: false,
+        error: err
+      })
+    } else {
+      res.json({
+        responseStatus: true,
+        token: result
+      })
+    }
+  });
+
+  function checkEmailExist(callback) {
+    console.time();
+    bigCommerce.get('/customers?email=' + req.body.email)
+      .then(customerInfo => {
+        console.timeEnd();
+        if (customerInfo) {
+          callback("Email exist already")
+        } else {
+          callback(null, "")
+        }
+      })
+      .catch(err => {
+        callback(err)
+      })
+  }
+
+  function createUser(result, callback) {
+    console.time();
+    bigCommerce.post('/customers', {
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
+        email: req.body.email,
+        _authentication: {
+          password: req.body.password,
+          password_confirmation: req.body.confirmPassword
+        }
+      }).then(customerInfo => {
+        console.timeEnd();
+        console.log(customerInfo)
+        callback(null, customerInfo)
+      })
+      .catch(err => {
+        if (err)
+          callback(err)
+      })
+  }
+
+  function generateToken(customerInfo, callback) {
+    console.time()
+    jwt.sign({
+      customerId: customerInfo.id
+    }, config.jwtSecret, function (err, token) {
+      console.timeEnd()
+      if (err) {
+        callback(err)
+      } else {
+        callback(null, token)
+      }
+    })
+  }
 })
 
+router.post('/login', (req, res, next) => {
+  let bigCommerce = req.bigCommerce
+  let jwt = req.jwt
 
+  async.waterfall([
+    checkEmailExist,
+    checkPassword,
+    generateToken
+  ], function (err, result) {
+    if (err) {
+      res.json({
+        responseStatus: false,
+        error: err
+      })
+    } else {
+      res.json({
+        responseStatus: true,
+        token: result
+      })
+    }
+  })
 
+  function checkEmailExist(callback) {
+    bigCommerce.get('/customers?email=' + req.body.email)
+      .then(customerInfo => {
+        if (customerInfo) {
+          callback(null, customerInfo)
+        } else {
+          callback("There are no such email!")
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        callback(err)
+      })
+  }
+
+  function checkPassword(customerInfo, callback) {
+    bigCommerce.post('/customers/' + customerInfo[0].id + "/validate", {
+        "password": req.body.password
+      })
+      .then(result => {
+        if (result.success) {
+          callback(null, customerInfo)
+        } else {
+          callback("Password is wrong")
+        }
+        console.log(result)
+      })
+  }
+
+  function generateToken(customerInfo, callback) {
+    console.log(customerInfo)
+    jwt.sign({
+      customerId: customerInfo[0].id
+    }, config.jwtSecret, function (err, token) {
+      if (err) {
+        callback(err)
+      } else {
+        callback(null, token)
+      }
+    })
+  }
+})
 
 // // 1) Query MongoDB for such facebookID
 // router.post('/check-user-exist', (req, res, next) => {
@@ -35,7 +166,6 @@ router.post('/sign-up', (req, res, next) => {
 //             })
 //         }
 //     })
-
 
 //     // //Retrieve bigCommerce Connection
 //     // bigCommerce = req.bigCommerce;
@@ -239,4 +369,4 @@ router.post('/sign-up', (req, res, next) => {
 //     })
 // });
 
-module.exports = router;
+module.exports = router

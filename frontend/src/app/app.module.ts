@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { ParallaxHeaderDirective } from '../directives/parallax-header/parallax-header';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -16,6 +17,7 @@ import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ProductProvider } from '../providers/product/product';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
 import { WheelSelector } from '@ionic-native/wheel-selector';
+import { CustomerProvider } from '../providers/customer/customer';
 
 
 @NgModule({
@@ -36,7 +38,7 @@ import { WheelSelector } from '@ionic-native/wheel-selector';
             scrollAssist: false
         }),
         IonicImageLoader.forRoot(),
-
+        IonicStorageModule.forRoot()
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -53,6 +55,7 @@ import { WheelSelector } from '@ionic-native/wheel-selector';
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         ProductProvider,
         WheelSelector,
+        CustomerProvider,
     ]
 })
 export class AppModule { }

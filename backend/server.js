@@ -4,6 +4,7 @@ let bodyParser = require('body-parser')
 let BigCommerce = require('node-bigcommerce')
 let config = require('./config/config')
 let cors = require('cors')
+let jwt = require('jsonwebtoken')
 let db
 
 // Initialisation
@@ -45,13 +46,14 @@ app.use(function (req, res, next) {
   req.db = db
   req.bigCommerce = bigCommerce
   req.bigCommerceV3 = bigCommerceV3
+  req.jwt = jwt
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   next()
 })
 
 // Routes
-// app.use('/auth', auth)
+app.use('/auth', auth)
 app.use('/product', product)
 // app.use('/profile', profile)
 // app.use('/cart', cart)

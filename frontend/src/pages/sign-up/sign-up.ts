@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { IonicPage, NavController, NavParams, MenuController, ToastController, LoadingController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { PasswordValidation } from '../../shared/password.validator'
+import { CustomerProvider } from '../../providers/customer/customer';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the SignUpPage page.
@@ -25,11 +28,15 @@ export class SignUpPage implements OnInit {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
-    public menu: MenuController) {
+    public menu: MenuController,
+    public customerProvider: CustomerProvider,
+    public storage: Storage,
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController) {
     this.signUp = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern('[^@]+@[^\.]+\..+')]],
       password: ['', [Validators.required, Validators.minLength(7), Validators.pattern('^[A-Za-z0-9]{7,}$')]],
       confirmPassword: ['', Validators.required],
     }, { validator: PasswordValidation.MatchPassword });
@@ -57,6 +64,37 @@ export class SignUpPage implements OnInit {
 
   signUpForm(signUpForm) {
     console.log(signUpForm);
+
+    let loading = this.loadingCtrl.create({
+      content: 'Loading',
+      spinner: 'dots',
+    });
+
+    loading.present();
+
+    this.customerProvider.signUp(signUpForm.value).subscribe(result => {
+      console.log(result)
+      if (result.responseStatus) {
+        this.storage.set('token', result.token)
+        let toast = this.toastCtrl.create({
+          message: "Sign up success!",
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+        this.navCtrl.setRoot(HomePage, {}, { animate: true, direction: 'forward' });
+      }
+      else {
+        let toast = this.toastCtrl.create({
+          message: "Error " + result.error.code,
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      }
+
+      loading.dismiss();
+    })
   }
 
 }

@@ -15,9 +15,13 @@
       <ion-label>
         <ion-icon name="mail" item-left></ion-icon>
       </ion-label>
-      <ion-input placeholder="Email" type="email" name="email" [(ngModel)]="email">
+      <ion-input placeholder="Email" type="email" name="email" [(ngModel)]="email" pattern="[^@]+@[^\.]+\..+" ngModel
+        #emailref="ngModel">
       </ion-input>
     </ion-item>
+    <ion-label *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" padding-left class="error-text">
+      Please enter correct email format
+    </ion-label>
 
     <ion-item>
       <ion-label>
