@@ -5,4 +5,4 @@ import { ParallaxHeaderDirective } from './parallax-header/parallax-header';
 	imports: [],
 	exports: [ParallaxHeaderDirective]
 })
-export class DirectivesModule {}
+export class DirectivesModule { }
