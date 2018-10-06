@@ -34,8 +34,8 @@ import { CustomerProvider } from '../providers/customer/customer';
         BrowserModule,
         HttpModule,
         IonicModule.forRoot(MyApp, {
-            scrollPadding: false,
-            scrollAssist: false
+            // scrollPadding: false,
+            // scrollAssist: false
         }),
         IonicImageLoader.forRoot(),
         IonicStorageModule.forRoot()

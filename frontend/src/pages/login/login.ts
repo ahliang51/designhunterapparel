@@ -4,6 +4,7 @@ import { SignUpPage } from '../sign-up/sign-up';
 import { HomePage } from '../home/home';
 import { Storage } from '@ionic/storage';
 import { CustomerProvider } from '../../providers/customer/customer';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,6 +22,7 @@ export class LoginPage {
 
   email;
   password;
+  loginForm: FormGroup
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -28,8 +30,14 @@ export class LoginPage {
     public customerProvider: CustomerProvider,
     public storage: Storage,
     public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public formBuilder: FormBuilder
   ) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.pattern('[^@]+@[^\.]+\..+')]],
+      password: ['', Validators.required]
+    })
+
   }
 
   ionViewDidLoad() {
@@ -48,8 +56,6 @@ export class LoginPage {
   }
 
   onSignIn() {
-    console.log(this.email);
-    console.log(this.password)
     let loading = this.loadingCtrl.create({
       content: 'Loading',
       spinner: 'dots',
@@ -57,8 +63,8 @@ export class LoginPage {
 
     loading.present();
     this.customerProvider.signIn({
-      email: this.email,
-      password: this.password
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
     }).subscribe(result => {
       console.log(result)
       if (result.responseStatus) {
@@ -82,5 +88,4 @@ export class LoginPage {
       loading.dismiss();
     })
   }
-
 }

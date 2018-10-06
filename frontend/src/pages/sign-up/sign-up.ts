@@ -22,7 +22,7 @@ export class SignUpPage implements OnInit {
 
   countriesArray: String[];
   countryOptions: {};
-  private signUp: FormGroup;
+  signUp: FormGroup;
 
 
   constructor(public navCtrl: NavController,
@@ -62,8 +62,7 @@ export class SignUpPage implements OnInit {
     this.menu.swipeEnable(true);
   }
 
-  signUpForm(signUpForm) {
-    console.log(signUpForm);
+  signUpForm() {
 
     let loading = this.loadingCtrl.create({
       content: 'Loading',
@@ -72,7 +71,7 @@ export class SignUpPage implements OnInit {
 
     loading.present();
 
-    this.customerProvider.signUp(signUpForm.value).subscribe(result => {
+    this.customerProvider.signUp(this.signUp.value).subscribe(result => {
       console.log(result)
       if (result.responseStatus) {
         this.storage.set('token', result.token)
