@@ -15,7 +15,7 @@
         <ion-label>
           <ion-icon name="mail" item-left></ion-icon>
         </ion-label>
-        <ion-input placeholder="Email" type="email" formControlName="email">
+        <ion-input placeholder="Email" type="email" formControlName="email" value="a@a.com">
         </ion-input>
       </ion-item>
       <ion-label *ngIf="loginForm.controls.email.errors && (loginForm.controls.email.touched || loginForm.controls.email.dirty)"
@@ -27,7 +27,7 @@
         <ion-label>
           <ion-icon name="key" item-left></ion-icon>
         </ion-label>
-        <ion-input placeholder="Password" type="password" formControlName="password">
+        <ion-input placeholder="Password" type="password" formControlName="password" value="qweqwe1">
         </ion-input>
       </ion-item>
     </ion-list>

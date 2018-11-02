@@ -19,6 +19,8 @@ import { WheelSelector } from '@ionic-native/wheel-selector';
 import { CustomerProvider } from '../providers/customer/customer';
 import { SharedModule } from '../shared/shared.module';
 import { DirectivesModule } from '../directives/directives.module';
+import { AuthenticateProvider } from '../providers/authenticate/authenticate';
+import { BagPage } from '../pages/bag/bag';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import { DirectivesModule } from '../directives/directives.module';
         MyApp,
         HomePage,
         ListPage,
+        BagPage
         // LoginPage,
         // SignUpPage,
         // ProductDetailPage,
@@ -48,7 +51,8 @@ import { DirectivesModule } from '../directives/directives.module';
         ListPage,
         LoginPage,
         SignUpPage,
-        ProductDetailPage
+        ProductDetailPage,
+        BagPage
     ],
     providers: [
         StatusBar,
@@ -57,6 +61,7 @@ import { DirectivesModule } from '../directives/directives.module';
         ProductProvider,
         WheelSelector,
         CustomerProvider,
+        AuthenticateProvider,
     ]
 })
 export class AppModule { }

@@ -3,6 +3,10 @@ import { NavController, AlertController, LoadingController } from 'ionic-angular
 import { ProductProvider } from '../../providers/product/product';
 import { ProductDetailPage } from '../product-detail/product-detail';
 import _ from 'underscore';
+import { AuthenticateProvider } from '../../providers/authenticate/authenticate';
+import { Storage } from '@ionic/storage';
+import { LoginPage } from '../login/login';
+import { BagPage } from '../bag/bag';
 
 @Component({
   selector: 'page-home',
@@ -14,7 +18,8 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     public productProvider: ProductProvider,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+  ) {
 
   }
 
@@ -61,5 +66,9 @@ export class HomePage {
     this.navCtrl.push(ProductDetailPage, {
       productId: productId
     });
+  }
+
+  onBag() {
+    this.navCtrl.push(BagPage)
   }
 }

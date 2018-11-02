@@ -146,6 +146,15 @@ router.post('/login', (req, res, next) => {
   }
 })
 
+router.post('/authenticated', (req, res, next) => {
+  let jwt = req.jwt
+  jwt.verify(req.body.token, config.jwtSecret, function (err, decoded) {
+    console.log(err)
+    if (err) {
+      return false
+    }
+  });
+})
 // // 1) Query MongoDB for such facebookID
 // router.post('/check-user-exist', (req, res, next) => {
 

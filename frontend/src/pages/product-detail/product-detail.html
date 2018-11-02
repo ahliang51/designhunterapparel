@@ -10,7 +10,7 @@
   <ion-header no-border>
     <ion-navbar transparent>
       <ion-buttons end>
-        <button ion-button icon-only>
+        <button ion-button icon-only (click)="onBag()">
           <ion-icon name="briefcase"></ion-icon>
         </button>
       </ion-buttons>
@@ -58,7 +58,7 @@
       </ion-grid>
     </ion-item>
 
-    <div text-center *ngIf="productDetail">
+    <div text-center *ngIf="productDetail" (click)="addToCart()">
       <button ion-button color="dark" class="add-to-bag">Add to Bag
         <ion-icon name="briefcase" class="add-to-bag-icon"></ion-icon>
       </button>
