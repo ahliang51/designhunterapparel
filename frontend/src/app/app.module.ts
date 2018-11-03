@@ -21,6 +21,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DirectivesModule } from '../directives/directives.module';
 import { AuthenticateProvider } from '../providers/authenticate/authenticate';
 import { BagPage } from '../pages/bag/bag';
+import { CartProvider } from '../providers/cart/cart';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { BagPage } from '../pages/bag/bag';
         WheelSelector,
         CustomerProvider,
         AuthenticateProvider,
+    CartProvider,
     ]
 })
 export class AppModule { }

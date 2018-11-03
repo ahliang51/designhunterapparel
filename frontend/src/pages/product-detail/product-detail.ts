@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
 import { WheelSelector } from '@ionic-native/wheel-selector';
 import _ from 'underscore';
 import { BagPage } from '../bag/bag';
 import { Storage } from '@ionic/storage';
+import { CartProvider } from '../../providers/cart/cart';
 
 /**
  * Generated class for the ProductDetailPage page.
@@ -32,7 +33,9 @@ export class ProductDetailPage {
     public productProvider: ProductProvider,
     public loadingCtrl: LoadingController,
     public selector: WheelSelector,
-    public storage: Storage) {
+    public toastCtrl: ToastController,
+    public storage: Storage,
+    public cartProvider: CartProvider) {
     this.productId = navParams.get("productId")
   }
 
@@ -94,18 +97,80 @@ export class ProductDetailPage {
   }
 
   addToCart() {
-    this.storage.get('cart').then(cart => {
-      //There is existing cart, add product to cart
-      if (cart) {
 
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      duration: 10000
+    });
+    loading.present();
+
+
+
+    this.storage.get('cartId').then(cartId => {
+      //There is existing cart, add product to cart
+      if (cartId) {
+        console.log(cartId)
+        let product = [{
+          "quantity": 1,
+          "product_id": this.productId,
+          "variant_id": this.productDetail.variants[this.variantIndex].id
+        }]
+
+        this.cartProvider.addToCart(cartId, product).subscribe(result => {
+          console.log(result)
+          loading.dismiss();
+          if (result.responseStatus) {
+            let toast = this.toastCtrl.create({
+              message: 'Added To Cart',
+              duration: 2000,
+              position: 'bottom'
+            });
+            toast.present();
+          }
+          else {
+            let toast = this.toastCtrl.create({
+              message: 'Error ' + result.error.code,
+              duration: 2000,
+              position: 'bottom'
+            });
+            toast.present();
+          }
+        })
       }
+
+      //There are no existing cart
       else {
         this.storage.get('token').then(token => {
           console.log(token)
+          let product = [{
+            "quantity": 1,
+            "product_id": this.productId,
+            "variant_id": this.productDetail.variants[this.variantIndex].id
+          }]
+          this.cartProvider.createCart(token, product).subscribe(cart => {
+            console.log(cart)
+            loading.dismiss();
+
+            if (cart.responseStatus) {
+              this.storage.set('cartId', cart.cart.data.id)
+              let toast = this.toastCtrl.create({
+                message: 'Added To Cart',
+                duration: 2000,
+                position: 'bottom'
+              });
+              toast.present();
+            }
+            else {
+              let toast = this.toastCtrl.create({
+                message: 'Error ' + cart.error.code,
+                duration: 2000,
+                position: 'bottom'
+              });
+              toast.present();
+            }
+          })
         })
       }
     })
   }
-
-
 }

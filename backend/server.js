@@ -56,7 +56,7 @@ app.use(function (req, res, next) {
 app.use('/auth', auth)
 app.use('/product', product)
 // app.use('/profile', profile)
-// app.use('/cart', cart)
+app.use('/cart', cart)
 
 // Start the server only the connection to database is successful
 app.listen(port, () => {
