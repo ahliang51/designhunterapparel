@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/core": "~4.12.0",
     "@ionic-native/file": "^4.14.0",
+    "@ionic-native/in-app-browser": "^4.17.0",
     "@ionic-native/splash-screen": "~4.12.0",
     "@ionic-native/status-bar": "~4.12.0",
     "@ionic-native/wheel-selector": "4.0.0",
@@ -30,6 +31,7 @@
     "cordova-android": "7.0.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-file": "^6.0.1",
+    "cordova-plugin-inappbrowser": "^3.0.0",
     "cordova-plugin-ionic-keyboard": "^2.1.2",
     "cordova-plugin-ionic-webview": "^2.1.4",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -63,7 +65,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-file": {},
       "cordova-wheel-selector-plugin": {},
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
       "android"

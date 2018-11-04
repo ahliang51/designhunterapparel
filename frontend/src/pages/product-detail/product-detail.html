@@ -35,7 +35,7 @@
         {{productDetail.price}}
       </ion-label>
     </ion-item>
-    <div text-center *ngIf="productDetail">
+    <div text-center *ngIf="variantArray.length > 1">
       <button ion-button color="primary" (click)="selectOption()" class="select-option-button">
         {{selectedOption}}
         <ion-icon name="arrow-dropdown-circle" class="arrow-icon"></ion-icon>

@@ -86,6 +86,7 @@ export class ProductDetailPage {
     }).then(
       result => {
         this.selectedOption = result[0].description
+        this.variantIndex = result[0].index
         console.log(result[0].description + ' at index: ' + result[0].index);
       },
       err => console.log('Error: ', err)

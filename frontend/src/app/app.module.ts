@@ -22,6 +22,7 @@ import { DirectivesModule } from '../directives/directives.module';
 import { AuthenticateProvider } from '../providers/authenticate/authenticate';
 import { BagPage } from '../pages/bag/bag';
 import { CartProvider } from '../providers/cart/cart';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { CartProvider } from '../providers/cart/cart';
         WheelSelector,
         CustomerProvider,
         AuthenticateProvider,
-    CartProvider,
+        InAppBrowser,
+        CartProvider,
     ]
 })
 export class AppModule { }

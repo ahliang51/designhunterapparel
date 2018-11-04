@@ -3,7 +3,7 @@
 let express = require('express'),
     router = express.Router(),
     async = require('async'),
-        // uuidv4 = require('uuid/v4'),
+        uuidv4 = require('uuid/v4'),
         config = require('../config/config'),
         jwt, bigCommerce, bigCommerceV3;
 
@@ -53,30 +53,23 @@ router.post('/create-cart', (req, res, next) => {
     }
 })
 
-// router.post('/update-cart', (req, res, next) => {
-//     bigCommerceV3 = req.bigCommerceV3;
-//     console.log(req.body.cartId)
-//     console.log(req.body.itemId)
-//     bigCommerceV3.put('/carts/' + req.body.cartId + '/items/' + req.body.itemId, {
-//             line_item: {
-//                 quantity: req.body.quantity,
-//                 product_id: req.body.productId
-//             }
-//         })
-//         .then(data => res.json(data))
-//         .catch(err => res.json(err));
-// })
-
-// router.post('/retrieve-cart', (req, res, next) => {
-//     bigCommerceV3 = req.bigCommerceV3;
-//     bigCommerceV3.get('/carts/' + req.body.cartId)
-//         .then(data => res.json(data));
-// })
-
+router.post('/update-cart', (req, res, next) => {
+    bigCommerceV3 = req.bigCommerceV3;
+    console.log(req.body.cartId)
+    console.log(req.body.itemId)
+    bigCommerceV3.put('/carts/' + req.body.cartId + '/items/' + req.body.itemId, {
+            line_item: {
+                quantity: req.body.quantity,
+                product_id: req.body.productId
+            }
+        })
+        .then(data => res.json(data))
+        .catch(err => res.json(err));
+})
 
 router.post('/retrieve-cart', (req, res, next) => {
     bigCommerceV3 = req.bigCommerceV3;
-    bigCommerceV3.get('/carts/' + req.body.cartId)
+    bigCommerceV3.get('/carts/' + req.body.cartId + "?include=line_items.physical_items.options")
         .then(cartInfo => {
             console.log(cartInfo);
             res.json(cartInfo)
@@ -104,13 +97,13 @@ router.post('/add-item', (req, res, next) => {
         })
 })
 
-// router.post('/remove-item', (req, res, next) => {
-//     bigCommerceV3 = req.bigCommerceV3;
-//     bigCommerceV3.delete('/carts/' + req.body.cartId + '/items/' + req.body.itemId)
-//         .then(data => {
-//             res.json(data);
-//         })
-// })
+router.post('/remove-item', (req, res, next) => {
+    bigCommerceV3 = req.bigCommerceV3;
+    bigCommerceV3.delete('/carts/' + req.body.cartId + '/items/' + req.body.itemId)
+        .then(data => {
+            res.json(data);
+        })
+})
 
 //Creating Order
 router.post('/place-order', (req, res, next) => {
@@ -146,10 +139,15 @@ router.post('/place-order', (req, res, next) => {
     }
 
     function createRedirectUrl(result, callback) {
-        userEcommerceId = result.customerEcommerceId;
+        userEcommerceId = result.customerId;
         bigCommerceV3.post('/carts/' + req.body.cartId + '/redirect_urls')
             .then(url => {
                 callback(null, url)
+            })
+            .catch(err => {
+                if (err) {
+                    callback(err)
+                }
             })
     }
 
@@ -173,7 +171,7 @@ router.post('/place-order', (req, res, next) => {
             expiresIn: '7d'
         }, function (err, token) {
             if (err)
-                callback(true)
+                callback(err)
             else {
                 loginUrl = config.bigCommerceLoginUrl + token
                 callback(null, loginUrl)

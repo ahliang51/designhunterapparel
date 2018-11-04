@@ -46,17 +46,37 @@ export class CartProvider {
       .map(res => res.json());
   }
 
-  // updateCart(cartId, itemId, productId, quantity) {
-  //   let headers = new Headers();
-  //   headers.append('Content-Type', 'application/json');
-  //   return this.http.post(vars.apiUrl + '/cart/update-cart', {
-  //     cartId: cartId,
-  //     itemId: itemId,
-  //     productId: productId,
-  //     quantity: quantity
-  //   }, { headers: headers })
-  //     .map(res => res.json());
-  // }
+  removeItem(cartId, itemId) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(vars.apiUrl + '/cart/remove-item', {
+      cartId: cartId,
+      itemId: itemId
+    }, { headers: headers })
+      .map(res => res.json());
+  }
+
+  updateCart(cartId, itemId, productId, quantity) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(vars.apiUrl + '/cart/update-cart', {
+      cartId: cartId,
+      itemId: itemId,
+      productId: productId,
+      quantity: quantity
+    }, { headers: headers })
+      .map(res => res.json());
+  }
+
+  placeOrder(token, cartId) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(vars.apiUrl + '/cart/place-order', {
+      jwt: token,
+      cartId: cartId
+    }, { headers: headers })
+      .map(res => res.json());
+  }
 
 
 }
