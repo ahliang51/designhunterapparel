@@ -1,4 +1,17 @@
 page-sign-up {
+
+  .toolbar-background {
+    background-color: #dda943;
+  }
+
+  ion-content {
+    background-color: #F3EED0 !important;
+  }
+
+  ion-item {
+    background-color: transparent !important;
+  }
+
   ion-input {
     ::placeholder {
       font-weight: bold;

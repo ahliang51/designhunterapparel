@@ -54,6 +54,15 @@
         <ion-input placeholder="Email" type="email" formControlName="email">
         </ion-input>
       </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="call" item-left></ion-icon>
+        </ion-label>
+        <ion-input placeholder="Phone Number" type="number" formControlName="phoneNumber">
+        </ion-input>
+      </ion-item>
+
       <ion-label *ngIf="signUp.controls.email.errors && (signUp.controls.email.touched || signUp.controls.email.dirty)"
         padding-left class="error-text">
         Incorrect email format
@@ -88,7 +97,7 @@
       </ion-label>
 
       <div text-center>
-        <button ion-button round class="sign-up" type="submit" [disabled]="!signUp.valid">Sign Up</button>
+        <button ion-button round class="sign-up" type="submit" [disabled]="!signUp.valid" color="intro-button">Sign Up</button>
       </div>
     </ion-list>
   </form>

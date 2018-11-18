@@ -31,6 +31,7 @@ let auth = require('./routes/auth')
 let product = require('./routes/product')
 let profile = require('./routes/profile')
 let cart = require('./routes/cart')
+let store = require('./routes/store')
 
 
 // Specifies the port number
@@ -57,6 +58,7 @@ app.use('/auth', auth)
 app.use('/product', product)
 // app.use('/profile', profile)
 app.use('/cart', cart)
+app.use('/store', store)
 
 // Start the server only the connection to database is successful
 app.listen(port, () => {

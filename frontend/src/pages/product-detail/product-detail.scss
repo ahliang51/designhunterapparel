@@ -53,5 +53,10 @@ page-product-detail {
       border: 1px solid black;
       padding: 1% !important;
     }
+
+    .swiper-pagination-bullet-active {
+      background: #ffcd00;
+    }
+
   }
 }

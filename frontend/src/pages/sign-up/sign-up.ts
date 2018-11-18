@@ -37,6 +37,7 @@ export class SignUpPage implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern('[^@]+@[^\.]+\..+')]],
+      phoneNumber: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(7), Validators.pattern('^[A-Za-z0-9]{7,}$')]],
       confirmPassword: ['', Validators.required],
     }, { validator: PasswordValidation.MatchPassword });

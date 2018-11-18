@@ -23,6 +23,8 @@ import { AuthenticateProvider } from '../providers/authenticate/authenticate';
 import { BagPage } from '../pages/bag/bag';
 import { CartProvider } from '../providers/cart/cart';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { StoreProvider } from '../providers/store/store';
+import { ContactUsPage } from '../pages/contact-us/contact-us';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
         MyApp,
         HomePage,
         ListPage,
-        BagPage
+        BagPage,
+        ContactUsPage
         // LoginPage,
         // SignUpPage,
         // ProductDetailPage,
@@ -54,7 +57,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
         LoginPage,
         SignUpPage,
         ProductDetailPage,
-        BagPage
+        BagPage,
+        ContactUsPage
     ],
     providers: [
         StatusBar,
@@ -66,6 +70,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
         AuthenticateProvider,
         InAppBrowser,
         CartProvider,
+        StoreProvider,
     ]
 })
 export class AppModule { }

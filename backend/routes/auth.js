@@ -30,10 +30,8 @@ router.post('/sign-up', (req, res, next) => {
   });
 
   function checkEmailExist(callback) {
-    console.time();
     bigCommerce.get('/customers?email=' + req.body.email)
       .then(customerInfo => {
-        console.timeEnd();
         if (customerInfo) {
           callback("Email exist already")
         } else {
@@ -46,17 +44,16 @@ router.post('/sign-up', (req, res, next) => {
   }
 
   function createUser(result, callback) {
-    console.time();
     bigCommerce.post('/customers', {
         first_name: req.body.firstName,
         last_name: req.body.lastName,
         email: req.body.email,
+        phone: req.body.phoneNumber,
         _authentication: {
           password: req.body.password,
           password_confirmation: req.body.confirmPassword
         }
       }).then(customerInfo => {
-        console.timeEnd();
         console.log(customerInfo)
         callback(null, customerInfo)
       })
@@ -67,11 +64,9 @@ router.post('/sign-up', (req, res, next) => {
   }
 
   function generateToken(customerInfo, callback) {
-    console.time()
     jwt.sign({
       customerId: customerInfo.id
     }, config.jwtSecret, function (err, token) {
-      console.timeEnd()
       if (err) {
         callback(err)
       } else {
