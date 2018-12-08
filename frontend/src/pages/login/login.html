@@ -14,8 +14,11 @@
 </ion-header>
 <ion-content padding>
 
-  <div text-center>
+  <!-- <div text-center>
     <img src="/assets/imgs/logo.png" class="logo">
+  </div> -->
+  <div class="email-text" text-center>
+    Sign in with email
   </div>
   <form [formGroup]="loginForm" (ngSubmit)="onSignIn()">
     <ion-list class="user-info">
@@ -23,7 +26,7 @@
         <ion-label>
           <ion-icon name="mail" item-left></ion-icon>
         </ion-label>
-        <ion-input placeholder="Email" type="email" formControlName="email" value="a@a.com">
+        <ion-input placeholder="EMAIL ADDRESS" type="email" formControlName="email" value="a@a.com">
         </ion-input>
       </ion-item>
       <ion-label *ngIf="loginForm.controls.email.errors && (loginForm.controls.email.touched || loginForm.controls.email.dirty)"
@@ -35,13 +38,13 @@
         <ion-label>
           <ion-icon name="key" item-left></ion-icon>
         </ion-label>
-        <ion-input placeholder="Password" type="password" formControlName="password" value="qweqwe1">
+        <ion-input placeholder="PASSWORD" type="password" formControlName="password" value="qweqwe1">
         </ion-input>
       </ion-item>
     </ion-list>
 
     <div text-center>
-      <button ion-button round class="sign-in" type="submit" color="intro-button" [disabled]="!loginForm.valid">Sign In</button>
+      <button ion-button class="sign-in" color="dark" type="submit" [disabled]="!loginForm.valid">Sign In</button>
     </div>
   </form>
   <ion-item no-lines>

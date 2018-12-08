@@ -9,9 +9,15 @@ page-login {
     margin-top: 20%;
   }
 
+  .email-text {
+    margin-top: 20%;
+    font-size: large;
+  }
+
   .sign-in {
+    font-weight: bold;
     height: 50px;
-    width: 80%;
+    width: 100%;
   }
 
   .sign-up-text {
@@ -32,13 +38,4 @@ page-login {
   .error-text {
     color: red;
   }
-
-  ion-content {
-    background-color: #F3EED0 !important;
-  }
-
-  ion-item {
-    background-color: transparent !important;
-  }
-
 }

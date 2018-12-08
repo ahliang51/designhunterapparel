@@ -1,13 +1,5 @@
 page-sign-up {
 
-  .toolbar-background {
-    background-color: #dda943;
-  }
-
-  ion-content {
-    background-color: #F3EED0 !important;
-  }
-
   ion-item {
     background-color: transparent !important;
   }
@@ -24,7 +16,8 @@ page-sign-up {
 
   .sign-up {
     margin-top: 10%;
-    width: 80%;
+    height: 50px;
+    width: 100%;
   }
 
   .error-text {
