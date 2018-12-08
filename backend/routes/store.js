@@ -18,11 +18,13 @@ router.get('/contact-us', (req, res, next) => {
    }
   }
  }).catch(err => {
-
- })
- res.json({
-  responseStatus: false,
-  error: "No Such Page"
+  console.log(err)
+  if (err) {
+   res.json({
+    responseStatus: false,
+    error: "No Such Page"
+   })
+  }
  })
 })
 

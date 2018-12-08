@@ -31,6 +31,7 @@ export class ContactUsPage {
     });
     loading.present();
     this.storeProvider.contactUs().subscribe(contactUs => {
+      console.log(contactUs)
       this.contactUs = contactUs
       loading.dismiss();
       console.log(this.contactUs)

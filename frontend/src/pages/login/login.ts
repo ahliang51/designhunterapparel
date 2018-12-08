@@ -43,13 +43,13 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-  ionViewDidEnter() {
-    this.menu.swipeEnable(false);
-  }
+  // ionViewDidEnter() {
+  //   this.menu.swipeEnable(false);
+  // }
 
-  ionViewWillLeave() {
-    this.menu.swipeEnable(true);
-  }
+  // ionViewWillLeave() {
+  //   this.menu.swipeEnable(true);
+  // }
 
   onSignUp() {
     this.navCtrl.push(SignUpPage);

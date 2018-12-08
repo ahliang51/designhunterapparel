@@ -44,23 +44,30 @@ export class BagPage {
 
     loading.present();
     this.storage.get('cartId').then(cartId => {
-      this.cartProvider.retrieveCart(cartId).subscribe(cartInfo => {
-        loading.dismiss();
-        console.log(cartInfo)
-        this.cartInfo = cartInfo
-        this.cartAmount = cartInfo.data.cart_amount
-        this.cartSize = cartInfo.data.line_items.physical_items.length
-        this.cartArray = cartInfo.data.line_items.physical_items
 
-        for (let item of this.cartArray) {
-          console.log(item)
-          for (let option of item.options) {
-            item.variantText += option.name + " " + option.value + " \n";
-            console.log(this.variantText)
+      if (cartId) {
+        this.cartProvider.retrieveCart(cartId).subscribe(cartInfo => {
+          loading.dismiss();
+
+          console.log(cartInfo)
+          this.cartInfo = cartInfo
+          this.cartAmount = cartInfo.data.cart_amount
+          this.cartSize = cartInfo.data.line_items.physical_items.length
+          this.cartArray = cartInfo.data.line_items.physical_items
+
+          for (let item of this.cartArray) {
+            console.log(item)
+            for (let option of item.options) {
+              item.variantText += option.name + " " + option.value + " \n";
+              console.log(this.variantText)
+            }
           }
-        }
-        console.log(this.cartArray)
-      })
+          console.log(this.cartArray)
+        })
+      }
+      else {
+        loading.dismiss();
+      }
     })
   }
 

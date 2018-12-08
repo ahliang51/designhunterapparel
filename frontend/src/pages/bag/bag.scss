@@ -4,6 +4,12 @@ page-bag {
     float: right;
   }
 
+  .empty-bag {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
   .product-image {
     width: 35%;
     float: left;
