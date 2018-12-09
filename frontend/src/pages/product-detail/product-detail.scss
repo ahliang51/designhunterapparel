@@ -55,7 +55,11 @@ page-product-detail {
     }
 
     .swiper-pagination-bullet-active {
-      background: #ffcd00;
+      background: black;
+      size: 2em !important;
+      height: 15px;
+      width: 15px;
+      border: 2px solid white;
     }
 
   }
