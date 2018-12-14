@@ -2,8 +2,8 @@
 // Import
 let express = require('express')
 let router = express.Router()
-// let config = require('../config/config')
-// let bigCommerce
+let config = require('../config/config')
+let bigCommerce
 let bigCommerceV3
 
 router.get('/retrieve-all-products', (req, res, next) => {
@@ -40,20 +40,20 @@ router.post('/product-detail', (req, res, next) => {
     })
 })
 
-// router.get('/categories', (req, res, next) => {
-//     bigCommerce = req.bigCommerce;
-//     bigCommerce.get('/categories')
-//         .then(data => {
-//             // for (let temp of data) {
-//             //     temp.image_file = config.storeImagePath + temp.image_file;
-//             // }
-//             // console.log(data)
-//             res.json(data)
-//         })
-//         .catch(err => {
-//             res.json(err);
-//         })
-// });
+router.get('/categories', (req, res, next) => {
+  bigCommerce = req.bigCommerce;
+  bigCommerce.get('/categories')
+    .then(data => {
+      for (let temp of data) {
+        temp.image_file = config.storeImagePath + temp.image_file;
+      }
+      console.log(data)
+      res.json(data)
+    })
+    .catch(err => {
+      res.json(err);
+    })
+});
 
 // router.post('/product-categories', (req, res, next) => {
 //     bigCommerce = req.bigCommerce;

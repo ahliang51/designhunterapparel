@@ -39,12 +39,12 @@
         </div>
         <p>$ {{item.sale_price | number : '1.2'}}</p>
 
-        <button ion-button outline (click)="onRemove(i)" class="option-button">
+        <button ion-button outline (click)="onRemove(i)" class="option-button" color="dark">
           <ion-icon class="fa fa-times"></ion-icon>
           &nbsp; Remove Product
         </button>
 
-        <button ion-button outline (click)="onEdit(i)" class="option-button">
+        <button ion-button outline (click)="onEdit(i)" class="option-button" color="dark">
           <ion-icon class="fa fa-edit"></ion-icon>
           &nbsp; Edit Quantity
         </button>
