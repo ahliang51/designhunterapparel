@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { IonicStorageModule } from '@ionic/storage';
+import { SuperTabsModule } from 'ionic2-super-tabs';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -24,6 +25,7 @@ import { CartProvider } from '../providers/cart/cart';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { StoreProvider } from '../providers/store/store';
 import { ContactUsPage } from '../pages/contact-us/contact-us';
+import { ProductCategoriesPage } from '../pages/product-categories/product-categories';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { ContactUsPage } from '../pages/contact-us/contact-us';
         MyApp,
         HomePage,
         BagPage,
-        ContactUsPage
+        ContactUsPage,
+        ProductCategoriesPage
         // LoginPage,
         // SignUpPage,
         // ProductDetailPage,
@@ -45,7 +48,8 @@ import { ContactUsPage } from '../pages/contact-us/contact-us';
         }),
         IonicImageLoader.forRoot(),
         IonicStorageModule.forRoot(),
-        SharedModule
+        SharedModule,
+        SuperTabsModule.forRoot()
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -55,7 +59,8 @@ import { ContactUsPage } from '../pages/contact-us/contact-us';
         SignUpPage,
         ProductDetailPage,
         BagPage,
-        ContactUsPage
+        ContactUsPage,
+        ProductCategoriesPage
     ],
     providers: [
         StatusBar,

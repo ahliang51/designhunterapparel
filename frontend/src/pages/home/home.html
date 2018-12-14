@@ -14,15 +14,18 @@
         <!-- <ion-badge>1</ion-badge> -->
       </button>
     </ion-buttons>
-    <ion-title>HOME</ion-title>
+    <ion-title>{{tabName}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <super-tabs (tabSelect)="onTabSelect($event)">
+    <super-tab [root]="page1" title="Home" id="Home"></super-tab>
+    <super-tab [root]="page2" title="Categories" id="Categories"></super-tab>
+  </super-tabs>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col *ngFor="let product of productArray" col-6 (click)="onProductDetail(product.id)">
-        <!-- <img src="{{product.images[0].url_standard}}"> -->
         <img-loader src="{{product.images[0].url_standard}}" useImg></img-loader>
         <ion-label>
           {{product.name}}
@@ -32,5 +35,5 @@
         </ion-label>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>

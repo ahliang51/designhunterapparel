@@ -45,6 +45,7 @@
     "font-awesome": "^4.7.0",
     "ionic-angular": "3.9.2",
     "ionic-image-loader": "5.1.1",
+    "ionic2-super-tabs": "^5.0.2",
     "ionicons": "3.0.0",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",

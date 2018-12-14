@@ -7,6 +7,7 @@ import { AuthenticateProvider } from '../../providers/authenticate/authenticate'
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 import { BagPage } from '../bag/bag';
+import { ProductCategoriesPage } from '../product-categories/product-categories';
 
 @Component({
   selector: 'page-home',
@@ -14,6 +15,10 @@ import { BagPage } from '../bag/bag';
 })
 export class HomePage {
   productArray = [];
+  tabName = "Home"
+
+  page1 = LoginPage
+  page2 = ProductCategoriesPage
 
   constructor(public navCtrl: NavController,
     public productProvider: ProductProvider,
@@ -70,5 +75,10 @@ export class HomePage {
 
   onBag() {
     this.navCtrl.push(BagPage)
+  }
+
+  onTabSelect(ev: any) {
+    console.log('Tab selected', 'Index: ' + ev.index, 'Unique ID: ' + ev.id);
+    this.tabName = ev.id;
   }
 }

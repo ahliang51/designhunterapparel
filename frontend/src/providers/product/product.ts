@@ -25,6 +25,13 @@ export class ProductProvider {
       .map(res => res.json());
   }
 
+  retrieveProductCategories() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(vars.apiUrl + '/product/product-categories', { headers: headers })
+      .map(res => res.json());
+  }
+
   retrieveProductDetail(productId) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

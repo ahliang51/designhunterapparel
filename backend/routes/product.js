@@ -40,29 +40,47 @@ router.post('/product-detail', (req, res, next) => {
     })
 })
 
-router.get('/categories', (req, res, next) => {
+// router.get('/categories', (req, res, next) => {
+//   let productCategoriesArray = [];
+//   bigCommerce = req.bigCommerce;
+//   bigCommerce.get('/categories')
+//     .then(data => {
+//       for (let temp of data) {
+//         if (temp.search_keywords) {
+//           console.log("yes")
+//           console.log(temp.search_keywords)
+//           productCategoriesArray.push(temp)
+//         }
+//         temp.image_file = config.storeImagePath + temp.image_file;
+//       }
+//       // console.log(data)
+//       console.log(productCategoriesArray)
+//       res.json(data)
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     })
+// });
+
+router.get('/product-categories', (req, res, next) => {
+  let productCategoriesArray = [];
   bigCommerce = req.bigCommerce;
   bigCommerce.get('/categories')
     .then(data => {
       for (let temp of data) {
-        temp.image_file = config.storeImagePath + temp.image_file;
+        if (temp.search_keywords.length == 0) {
+          console.log("yes")
+          console.log(temp.search_keywords)
+          productCategoriesArray.push(temp)
+          temp.image_file = config.storeImagePath + temp.image_file;
+        }
       }
-      console.log(data)
-      res.json(data)
+      res.json(productCategoriesArray)
     })
     .catch(err => {
       res.json(err);
     })
 });
-
-// router.post('/product-categories', (req, res, next) => {
-//     bigCommerce = req.bigCommerce;
-//     bigCommerce.get('/products?category=' + req.body.categoryId)
-//         .then(data => {
-//             // console.log(data)
-//             res.json(data)
-//         })
-// });
 
 
 
