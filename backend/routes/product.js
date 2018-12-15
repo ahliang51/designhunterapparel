@@ -40,27 +40,23 @@ router.post('/product-detail', (req, res, next) => {
     })
 })
 
-// router.get('/categories', (req, res, next) => {
-//   let productCategoriesArray = [];
-//   bigCommerce = req.bigCommerce;
-//   bigCommerce.get('/categories')
-//     .then(data => {
-//       for (let temp of data) {
-//         if (temp.search_keywords) {
-//           console.log("yes")
-//           console.log(temp.search_keywords)
-//           productCategoriesArray.push(temp)
-//         }
-//         temp.image_file = config.storeImagePath + temp.image_file;
-//       }
-//       // console.log(data)
-//       console.log(productCategoriesArray)
-//       res.json(data)
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     })
-// });
+router.get('/promo-categories', (req, res, next) => {
+  let productCategoriesArray = [];
+  bigCommerce = req.bigCommerce;
+  bigCommerce.get('/categories')
+    .then(data => {
+      for (let temp of data) {
+        if (temp.search_keywords.length > 0) {
+          productCategoriesArray.push(temp)
+        }
+        temp.image_file = config.storeImagePath + temp.image_file;
+      }
+      res.json(productCategoriesArray)
+    })
+    .catch(err => {
+      res.json(err);
+    })
+});
 
 router.get('/product-categories', (req, res, next) => {
   let productCategoriesArray = [];
@@ -69,13 +65,24 @@ router.get('/product-categories', (req, res, next) => {
     .then(data => {
       for (let temp of data) {
         if (temp.search_keywords.length == 0) {
-          console.log("yes")
-          console.log(temp.search_keywords)
           productCategoriesArray.push(temp)
           temp.image_file = config.storeImagePath + temp.image_file;
         }
       }
       res.json(productCategoriesArray)
+    })
+    .catch(err => {
+      res.json(err);
+    })
+});
+
+router.post('/filter-product-by-categories', (req, res, next) => {
+  bigCommerceV3 = req.bigCommerceV3;
+  console.log(req.body.categoryId)
+  bigCommerceV3.get('/catalog/products?categories=32')
+    .then(data => {
+
+      res.json(data)
     })
     .catch(err => {
       res.json(err);

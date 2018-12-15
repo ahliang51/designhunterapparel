@@ -32,6 +32,13 @@ export class ProductProvider {
       .map(res => res.json());
   }
 
+  retrievePromoProductCategories() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(vars.apiUrl + '/product/promo-categories', { headers: headers })
+      .map(res => res.json());
+  }
+
   retrieveProductDetail(productId) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -39,4 +46,10 @@ export class ProductProvider {
       .map(res => res.json());
   }
 
+  filterProductByCategories(categoryId) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(vars.apiUrl + '/product/filter-product-by-categories', { categoryId: categoryId }, { headers: headers })
+      .map(res => res.json());
+  }
 }

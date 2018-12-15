@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 import { BagPage } from '../bag/bag';
 import { ProductCategoriesPage } from '../product-categories/product-categories';
+import { HomePromotionalPage } from '../home-promotional/home-promotional';
 
 @Component({
   selector: 'page-home',
@@ -17,7 +18,7 @@ export class HomePage {
   productArray = [];
   tabName = "Home"
 
-  page1 = LoginPage
+  page1 = HomePromotionalPage
   page2 = ProductCategoriesPage
 
   constructor(public navCtrl: NavController,

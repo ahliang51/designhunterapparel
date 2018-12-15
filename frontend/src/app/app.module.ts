@@ -26,6 +26,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { StoreProvider } from '../providers/store/store';
 import { ContactUsPage } from '../pages/contact-us/contact-us';
 import { ProductCategoriesPage } from '../pages/product-categories/product-categories';
+import { HomePromotionalPage } from '../pages/home-promotional/home-promotional';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ProductCategoriesPage } from '../pages/product-categories/product-categ
         HomePage,
         BagPage,
         ContactUsPage,
-        ProductCategoriesPage
+        ProductCategoriesPage,
+        HomePromotionalPage
         // LoginPage,
         // SignUpPage,
         // ProductDetailPage,
@@ -60,7 +62,8 @@ import { ProductCategoriesPage } from '../pages/product-categories/product-categ
         ProductDetailPage,
         BagPage,
         ContactUsPage,
-        ProductCategoriesPage
+        ProductCategoriesPage,
+        HomePromotionalPage
     ],
     providers: [
         StatusBar,
