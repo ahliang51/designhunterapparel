@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
 import { ImageAttribute } from 'ionic-image-loader'
+import { ProductListPage } from '../product-list/product-list';
 
 /**
  * Generated class for the ProductCategoriesPage page.
@@ -18,17 +19,20 @@ import { ImageAttribute } from 'ionic-image-loader'
 export class ProductCategoriesPage {
 
   productCategories
+  rootNavCtrl: NavController;
   imageAttributes: ImageAttribute[] = [];
 
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public productProvider: ProductProvider,
+    public loadingCtrl: LoadingController,
   ) {
     this.imageAttributes.push({
       element: 'class',
       value: 'product-categories'
     })
+    this.rootNavCtrl = navParams.get('rootNavCtrl');
   }
 
   ionViewDidLoad() {
@@ -36,6 +40,30 @@ export class ProductCategoriesPage {
     this.productProvider.retrieveProductCategories().subscribe(productCategories => {
       console.log(productCategories)
       this.productCategories = productCategories
+    })
+  }
+
+  filterProductByCategories(categoryName, categoryId) {
+    console.log(categoryId)
+    let loading = this.loadingCtrl.create({
+      content: 'Fetching data',
+      spinner: 'dots',
+    });
+
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 10000);
+
+    this.productProvider.filterProductByCategories(categoryId).subscribe(products => {
+      console.log(products);
+      loading.dismiss();
+      console.log(categoryName)
+      this.rootNavCtrl.push(ProductListPage, {
+        categoryName: categoryName,
+        productsArray: products
+      })
     })
   }
 

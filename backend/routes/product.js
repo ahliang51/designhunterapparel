@@ -79,9 +79,8 @@ router.get('/product-categories', (req, res, next) => {
 router.post('/filter-product-by-categories', (req, res, next) => {
   bigCommerceV3 = req.bigCommerceV3;
   console.log(req.body.categoryId)
-  bigCommerceV3.get('/catalog/products?categories=32')
+  bigCommerceV3.get('/catalog/products?include=images&categories=' + req.body.categoryId)
     .then(data => {
-
       res.json(data)
     })
     .catch(err => {

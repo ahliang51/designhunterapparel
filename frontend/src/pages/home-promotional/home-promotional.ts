@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
 import { LoginPage } from '../login/login';
+import { ProductListPage } from '../product-list/product-list';
 
 /**
  * Generated class for the HomePromotionalPage page.
@@ -34,7 +35,7 @@ export class HomePromotionalPage {
     })
   }
 
-  filterProductByCategories(categoryId) {
+  filterProductByCategories(categoryName, categoryId) {
     console.log(categoryId)
     let loading = this.loadingCtrl.create({
       content: 'Fetching data',
@@ -50,7 +51,11 @@ export class HomePromotionalPage {
     this.productProvider.filterProductByCategories(categoryId).subscribe(products => {
       console.log(products);
       loading.dismiss();
-      this.rootNavCtrl.push(LoginPage)
+      console.log(categoryName)
+      this.rootNavCtrl.push(ProductListPage, {
+        categoryName: categoryName,
+        productsArray: products
+      })
     })
   }
 

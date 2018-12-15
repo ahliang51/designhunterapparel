@@ -27,6 +27,8 @@ import { StoreProvider } from '../providers/store/store';
 import { ContactUsPage } from '../pages/contact-us/contact-us';
 import { ProductCategoriesPage } from '../pages/product-categories/product-categories';
 import { HomePromotionalPage } from '../pages/home-promotional/home-promotional';
+import { ProductListPage } from '../pages/product-list/product-list';
+
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { HomePromotionalPage } from '../pages/home-promotional/home-promotional'
         BagPage,
         ContactUsPage,
         ProductCategoriesPage,
-        HomePromotionalPage
+        HomePromotionalPage,
+        ProductListPage
         // LoginPage,
         // SignUpPage,
         // ProductDetailPage,
@@ -63,6 +66,7 @@ import { HomePromotionalPage } from '../pages/home-promotional/home-promotional'
         BagPage,
         ContactUsPage,
         ProductCategoriesPage,
+        ProductListPage,
         HomePromotionalPage
     ],
     providers: [

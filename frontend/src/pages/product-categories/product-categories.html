@@ -6,7 +6,7 @@
 -->
 <ion-content padding-bottom>
   <ion-grid>
-    <ion-row *ngFor="let category of productCategories">
+    <ion-row *ngFor="let category of productCategories" (click)="filterProductByCategories(category.name,category.id)">
       <!-- <img-loader src="{{category.image_file}}" useImg [imgAttributes]="imageAttributes">
 
       </img-loader> -->

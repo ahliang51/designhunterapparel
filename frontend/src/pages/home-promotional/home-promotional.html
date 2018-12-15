@@ -7,7 +7,7 @@
 <ion-content padding>
   <ion-grid>
     <ion-row *ngFor="let promo of promoProduct">
-      <img-loader src="{{promo.image_file}}" useImg (click)="filterProductByCategories(promo.id)">
+      <img-loader src="{{promo.image_file}}" useImg (click)="filterProductByCategories(promo.name,promo.id)">
       </img-loader>
     </ion-row>
   </ion-grid>
