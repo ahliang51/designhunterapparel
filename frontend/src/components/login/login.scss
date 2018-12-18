@@ -1,0 +1,39 @@
+.logo {
+  margin-top: 10%;
+  height: 100%;
+  width: 200px;
+}
+
+.user-info {
+  margin-top: 20%;
+}
+
+.email-text {
+  margin-top: 20%;
+  font-size: large;
+}
+
+.sign-in {
+  font-weight: bold;
+  height: 50px;
+  width: 100%;
+}
+
+.sign-up-text {
+  margin-top: 5%;
+}
+
+.sign-up-button {
+  font-weight: bold;
+  display: inline;
+}
+
+ion-input {
+  ::placeholder {
+    font-weight: bold;
+  }
+}
+
+.error-text {
+  color: red;
+}

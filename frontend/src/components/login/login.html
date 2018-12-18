@@ -1,0 +1,43 @@
+<!-- Generated template for the LoginComponent component -->
+
+<!-- <div text-center>
+    <img src="/assets/imgs/logo.png" class="logo">
+  </div> -->
+<div class="email-text" text-center>
+  Sign in with email
+</div>
+<form [formGroup]="loginForm" (ngSubmit)="onSignIn()">
+  <ion-list class="user-info">
+    <ion-item>
+      <ion-label>
+        <ion-icon name="mail" item-left></ion-icon>
+      </ion-label>
+      <ion-input placeholder="EMAIL ADDRESS" type="email" formControlName="email" value="a@a.com">
+      </ion-input>
+    </ion-item>
+    <ion-label *ngIf="loginForm.controls.email.errors && (loginForm.controls.email.touched || loginForm.controls.email.dirty)"
+      padding-left class="error-text">
+      Please enter correct email format
+    </ion-label>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="key" item-left></ion-icon>
+      </ion-label>
+      <ion-input placeholder="PASSWORD" type="password" formControlName="password" value="qweqwe1">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div text-center>
+    <button ion-button class="sign-in" color="dark" type="submit" [disabled]="!loginForm.valid">Sign In</button>
+  </div>
+</form>
+<ion-item no-lines>
+  <ion-label text-center class="sign-up-text">
+    Don't have an account?
+    <ion-label class="sign-up-button" (click)="onSignUp()">
+      Sign Up
+    </ion-label>
+  </ion-label>
+</ion-item>

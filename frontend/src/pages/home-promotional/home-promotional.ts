@@ -32,6 +32,7 @@ export class HomePromotionalPage {
     console.log('ionViewDidLoad HomePromotionalPage');
     this.productProvider.retrievePromoProductCategories().subscribe(promoProduct => {
       this.promoProduct = promoProduct;
+      console.log(this.promoProduct)
     })
   }
 

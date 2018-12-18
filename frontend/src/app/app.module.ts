@@ -28,7 +28,8 @@ import { ContactUsPage } from '../pages/contact-us/contact-us';
 import { ProductCategoriesPage } from '../pages/product-categories/product-categories';
 import { HomePromotionalPage } from '../pages/home-promotional/home-promotional';
 import { ProductListPage } from '../pages/product-list/product-list';
-
+import { AccountPage } from '../pages/account/account';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ProductListPage } from '../pages/product-list/product-list';
         ContactUsPage,
         ProductCategoriesPage,
         HomePromotionalPage,
-        ProductListPage
+        ProductListPage,
+        AccountPage
         // LoginPage,
         // SignUpPage,
         // ProductDetailPage,
@@ -54,6 +56,7 @@ import { ProductListPage } from '../pages/product-list/product-list';
         IonicImageLoader.forRoot(),
         IonicStorageModule.forRoot(),
         SharedModule,
+        ComponentsModule,
         SuperTabsModule.forRoot()
     ],
     bootstrap: [IonicApp],
@@ -67,7 +70,8 @@ import { ProductListPage } from '../pages/product-list/product-list';
         ContactUsPage,
         ProductCategoriesPage,
         ProductListPage,
-        HomePromotionalPage
+        HomePromotionalPage,
+        AccountPage
     ],
     providers: [
         StatusBar,

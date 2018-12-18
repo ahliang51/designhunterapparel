@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ContactUsPage } from '../pages/contact-us/contact-us';
+import { ImageLoaderConfig } from 'ionic-image-loader';
+import { AccountPage } from '../pages/account/account';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,12 +20,16 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public imageLoaderConfig: ImageLoaderConfig) {
+    imageLoaderConfig.setImageReturnType('base64');
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'MY ACCOUNT', component: LoginPage },
+      { title: 'MY ACCOUNT', component: AccountPage },
       { title: 'CONTACT US', component: ContactUsPage },
       { title: 'LOG OUT', component: LoginPage }
     ];
