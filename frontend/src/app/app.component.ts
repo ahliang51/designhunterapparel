@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ContactUsPage } from '../pages/contact-us/contact-us';
 import { ImageLoaderConfig } from 'ionic-image-loader';
@@ -16,7 +15,8 @@ import { AccountPage } from '../pages/account/account';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  // rootPage: any = HomePage;
+  rootPage: any = AccountPage;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -31,7 +31,7 @@ export class MyApp {
     this.pages = [
       { title: 'MY ACCOUNT', component: AccountPage },
       { title: 'CONTACT US', component: ContactUsPage },
-      { title: 'LOG OUT', component: LoginPage }
+      { title: 'LOG OUT', component: AccountPage }
     ];
 
   }

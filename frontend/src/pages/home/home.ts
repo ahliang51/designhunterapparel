@@ -5,7 +5,6 @@ import { ProductDetailPage } from '../product-detail/product-detail';
 import _ from 'underscore';
 import { AuthenticateProvider } from '../../providers/authenticate/authenticate';
 import { Storage } from '@ionic/storage';
-import { LoginPage } from '../login/login';
 import { BagPage } from '../bag/bag';
 import { ProductCategoriesPage } from '../product-categories/product-categories';
 import { HomePromotionalPage } from '../home-promotional/home-promotional';

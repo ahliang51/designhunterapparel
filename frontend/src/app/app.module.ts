@@ -11,7 +11,6 @@ import { HomePage } from '../pages/home/home';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ProductProvider } from '../providers/product/product';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
@@ -63,7 +62,6 @@ import { ComponentsModule } from '../components/components.module';
     entryComponents: [
         MyApp,
         HomePage,
-        LoginPage,
         SignUpPage,
         ProductDetailPage,
         BagPage,
