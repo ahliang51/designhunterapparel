@@ -54,7 +54,10 @@ router.get('/promo-categories', (req, res, next) => {
       res.json(productCategoriesArray)
     })
     .catch(err => {
-      res.json(err);
+      res.json({
+        responseStatus: false,
+        error: err
+      })
     })
 });
 
@@ -72,7 +75,10 @@ router.get('/product-categories', (req, res, next) => {
       res.json(productCategoriesArray)
     })
     .catch(err => {
-      res.json(err);
+      res.json({
+        responseStatus: false,
+        error: err
+      })
     })
 });
 
@@ -84,7 +90,10 @@ router.post('/filter-product-by-categories', (req, res, next) => {
       res.json(data)
     })
     .catch(err => {
-      res.json(err);
+      res.json({
+        responseStatus: false,
+        error: err
+      })
     })
 });
 

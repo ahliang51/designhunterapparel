@@ -1,5 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+
+import 'rxjs/add/operator/map';
+
+import * as vars from '../../global-variable';
 
 /*
   Generated class for the ProfileProvider provider.
@@ -10,8 +14,15 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ProfileProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: Http) {
     console.log('Hello ProfileProvider Provider');
+  }
+
+  retrieveOrders(jwtToken) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(vars.apiUrl + '/profile/retrieve-orders', jwtToken, { headers: headers })
+      .map(res => res.json());
   }
 
 }

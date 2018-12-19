@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { ProfileProvider } from '../../providers/profile/profile';
 
 /**
  * Generated class for the AccountOrdersPage page.
@@ -17,11 +19,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AccountOrdersPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public storage: Storage,
+    public profileProvider: ProfileProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountOrdersPage');
+    this.storage.get('token').then(token => {
+      console.log(token)
+      this.profileProvider.retrieveOrders({ token: token }).subscribe(orders => {
+        console.log(orders)
+      })
+    })
   }
+
+
 
 }
