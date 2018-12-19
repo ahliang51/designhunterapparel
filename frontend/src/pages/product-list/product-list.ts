@@ -9,7 +9,9 @@ import { ProductDetailPage } from '../product-detail/product-detail';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name: "product-list"
+})
 @Component({
   selector: 'page-product-list',
   templateUrl: 'product-list.html',
@@ -29,7 +31,7 @@ export class ProductListPage {
   }
 
   onProductDetail(productId) {
-    this.navCtrl.push(ProductDetailPage, {
+    this.navCtrl.push("product-detail", {
       productId: productId
     });
   }

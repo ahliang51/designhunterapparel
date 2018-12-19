@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavParams } from 'ionic-angular/navigation/nav-params';
+import { NavController } from 'ionic-angular/navigation/nav-controller';
 
 /**
  * Generated class for the AccountDetailComponent component.
@@ -12,11 +14,14 @@ import { Component } from '@angular/core';
 })
 export class AccountDetailComponent {
 
-  text: string;
 
-  constructor() {
-    console.log('Hello AccountDetailComponent Component');
-    this.text = 'Hello World';
+  constructor(public navParams: NavParams,
+    public navCtrl: NavController, ) {
   }
+
+  myOrders() {
+    this.navCtrl.push('account-orders')
+  }
+
 
 }

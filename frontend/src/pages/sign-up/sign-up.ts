@@ -13,7 +13,9 @@ import { HomePage } from '../home/home';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name: "sign-up"
+})
 @Component({
   selector: 'page-sign-up',
   templateUrl: 'sign-up.html',

@@ -9,7 +9,9 @@ import { StoreProvider } from '../../providers/store/store';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name: "contact-us"
+})
 @Component({
   selector: 'page-contact-us',
   templateUrl: 'contact-us.html',

@@ -5,10 +5,10 @@ import { IonicModule } from 'ionic-angular';
 import { AccountDetailComponent } from './account-detail/account-detail';
 @NgModule({
 	declarations: [LoginComponent,
-    AccountDetailComponent],
+		AccountDetailComponent],
 	imports: [ReactiveFormsModule,
-		IonicModule.forRoot(LoginComponent)],
+		IonicModule],
 	exports: [LoginComponent,
-    AccountDetailComponent]
+		AccountDetailComponent]
 })
 export class ComponentsModule { }

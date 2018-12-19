@@ -7,43 +7,23 @@ import { IonicStorageModule } from '@ionic/storage';
 import { SuperTabsModule } from 'ionic2-super-tabs';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ProductProvider } from '../providers/product/product';
-import { ProductDetailPage } from '../pages/product-detail/product-detail';
 import { WheelSelector } from '@ionic-native/wheel-selector';
 import { CustomerProvider } from '../providers/customer/customer';
 import { SharedModule } from '../shared/shared.module';
-import { DirectivesModule } from '../directives/directives.module';
 import { AuthenticateProvider } from '../providers/authenticate/authenticate';
-import { BagPage } from '../pages/bag/bag';
 import { CartProvider } from '../providers/cart/cart';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { StoreProvider } from '../providers/store/store';
-import { ContactUsPage } from '../pages/contact-us/contact-us';
-import { ProductCategoriesPage } from '../pages/product-categories/product-categories';
-import { HomePromotionalPage } from '../pages/home-promotional/home-promotional';
-import { ProductListPage } from '../pages/product-list/product-list';
-import { AccountPage } from '../pages/account/account';
 import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
     declarations: [
         MyApp,
-        HomePage,
-        BagPage,
-        ContactUsPage,
-        ProductCategoriesPage,
-        HomePromotionalPage,
-        ProductListPage,
-        AccountPage
-        // LoginPage,
-        // SignUpPage,
-        // ProductDetailPage,
     ],
     imports: [
         BrowserModule,
@@ -61,15 +41,6 @@ import { ComponentsModule } from '../components/components.module';
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
-        HomePage,
-        SignUpPage,
-        ProductDetailPage,
-        BagPage,
-        ContactUsPage,
-        ProductCategoriesPage,
-        ProductListPage,
-        HomePromotionalPage,
-        AccountPage
     ],
     providers: [
         StatusBar,

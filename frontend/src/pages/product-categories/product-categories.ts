@@ -11,7 +11,9 @@ import { ProductListPage } from '../product-list/product-list';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name: "product-categories"
+})
 @Component({
   selector: 'page-product-categories',
   templateUrl: 'product-categories.html',
@@ -60,7 +62,7 @@ export class ProductCategoriesPage {
       console.log(products);
       loading.dismiss();
       console.log(categoryName)
-      this.rootNavCtrl.push(ProductListPage, {
+      this.rootNavCtrl.push("product-list", {
         categoryName: categoryName,
         productsArray: products
       })

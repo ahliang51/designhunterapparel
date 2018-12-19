@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, IonicPage } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
 import { ProductDetailPage } from '../product-detail/product-detail';
 import _ from 'underscore';
 import { AuthenticateProvider } from '../../providers/authenticate/authenticate';
 import { Storage } from '@ionic/storage';
 import { BagPage } from '../bag/bag';
-import { ProductCategoriesPage } from '../product-categories/product-categories';
-import { HomePromotionalPage } from '../home-promotional/home-promotional';
 
+@IonicPage({
+  name: "home"
+})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -17,8 +18,8 @@ export class HomePage {
   productArray = [];
   tabName = "Home"
 
-  page1 = HomePromotionalPage
-  page2 = ProductCategoriesPage
+  page1 = "home-promotional"
+  page2 = "product-categories"
 
   constructor(public navCtrl: NavController,
     public productProvider: ProductProvider,
@@ -68,13 +69,13 @@ export class HomePage {
   }
 
   onProductDetail(productId) {
-    this.navCtrl.push(ProductDetailPage, {
+    this.navCtrl.push("product-detail", {
       productId: productId
     });
   }
 
   onBag() {
-    this.navCtrl.push(BagPage)
+    this.navCtrl.push("bag")
   }
 
   onTabSelect(ev: any) {

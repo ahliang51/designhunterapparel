@@ -11,7 +11,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name: "bag"
+})
 @Component({
   selector: 'page-bag',
   templateUrl: 'bag.html',

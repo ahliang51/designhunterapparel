@@ -14,7 +14,9 @@ import { CartProvider } from '../../providers/cart/cart';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name: "product-detail"
+})
 @Component({
   selector: 'page-product-detail',
   templateUrl: 'product-detail.html',
@@ -94,7 +96,7 @@ export class ProductDetailPage {
   }
 
   onBag() {
-    this.navCtrl.push(BagPage)
+    this.navCtrl.push("bag")
   }
 
   addToCart() {

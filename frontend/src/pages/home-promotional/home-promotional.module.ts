@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HomePromotionalPage } from './home-promotional';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { HomePromotionalPage } from './home-promotional';
   ],
   imports: [
     IonicPageModule.forChild(HomePromotionalPage),
+    IonicImageLoader
   ],
 })
-export class HomePromotionalPageModule {}
+export class HomePromotionalPageModule { }
