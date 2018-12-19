@@ -102,6 +102,7 @@ router.post('/login', (req, res, next) => {
     bigCommerce.get('/customers?email=' + req.body.email)
       .then(customerInfo => {
         if (customerInfo) {
+          console.log(customerInfo)
           callback(null, customerInfo)
         } else {
           callback("There are no such email!")

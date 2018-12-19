@@ -56,7 +56,7 @@ app.use(function (req, res, next) {
 // Routes
 app.use('/auth', auth)
 app.use('/product', product)
-// app.use('/profile', profile)
+app.use('/profile', profile)
 app.use('/cart', cart)
 app.use('/store', store)
 

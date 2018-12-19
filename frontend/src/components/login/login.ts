@@ -39,7 +39,7 @@ export class LoginComponent {
   }
 
   onSignUp() {
-    this.navCtrl.push(SignUpPage);
+    this.navCtrl.push("sign-up");
   }
 
   onSignIn() {
@@ -62,7 +62,7 @@ export class LoginComponent {
           position: 'bottom'
         });
         toast.present();
-        this.navCtrl.setRoot(HomePage, {}, { animate: true, direction: 'forward' });
+        this.navCtrl.setRoot("home", {}, { animate: true, direction: 'forward' });
       }
       else {
         let toast = this.toastCtrl.create({

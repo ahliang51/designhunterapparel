@@ -1,3 +1,41 @@
+'use strict'
+// Import
+let express = require('express')
+let router = express.Router()
+let async = require('async')
+let config = require('../config/config')
+
+router.get('/retrieve-orders', (req, res, next) => {
+ let bigCommerce = req.bigCommerce;
+ bigCommerce.get('/orders?include=images&customer_id=87')
+  .then(data => {
+   res.json(data)
+  })
+})
+
+router.get('/retrieve-order', (req, res, next) => {
+ let bigCommerce = req.bigCommerce;
+ bigCommerce.get('/orders/145?include=images')
+  .then(data => {
+   res.json(data)
+  })
+})
+
+router.get('/test', (req, res, next) => {
+ let bigCommerce = req.bigCommerce;
+ bigCommerce.get('/orders/146/products')
+  .then(data => {
+   res.json(data)
+  })
+})
+
+
+
+module.exports = router
+
+
+
+
 // 'use strict';
 // //Import
 // let express = require('express'),
@@ -8,6 +46,7 @@
 //     mysql = require('mysql'),
 //     _ = require('underscore'),
 //     db, jwt, bigCommerce, bigCommerceV3;
+
 
 
 

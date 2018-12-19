@@ -19,6 +19,7 @@ import { CartProvider } from '../providers/cart/cart';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { StoreProvider } from '../providers/store/store';
 import { ComponentsModule } from '../components/components.module';
+import { ProfileProvider } from '../providers/profile/profile';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { ComponentsModule } from '../components/components.module';
         InAppBrowser,
         CartProvider,
         StoreProvider,
+    ProfileProvider,
     ]
 })
 export class AppModule { }
