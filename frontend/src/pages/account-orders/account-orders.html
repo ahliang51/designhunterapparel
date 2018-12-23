@@ -14,5 +14,17 @@
 
 
 <ion-content padding>
-
+  <ion-grid>
+    <ion-row *ngFor="let order of orderArray" padding>
+      <ion-label col-12>
+        {{order.status}}
+      </ion-label>
+      <ion-label col-12>
+        Order Number : {{order.id}}
+      </ion-label>
+      <ion-label col-12 *ngIf="order.date_shipped">
+        Date Shipped : {{order.date_shipped | date}}
+      </ion-label>
+    </ion-row>
+  </ion-grid>
 </ion-content>

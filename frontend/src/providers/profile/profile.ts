@@ -25,4 +25,10 @@ export class ProfileProvider {
       .map(res => res.json());
   }
 
+  retrieveInfo(jwtToken) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(vars.apiUrl + '/profile/retrieve-customer-info', jwtToken, { headers: headers })
+      .map(res => res.json());
+  }
 }

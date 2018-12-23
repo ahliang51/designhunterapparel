@@ -19,6 +19,8 @@ import { ProfileProvider } from '../../providers/profile/profile';
 })
 export class AccountOrdersPage {
 
+  orderArray
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
@@ -31,6 +33,7 @@ export class AccountOrdersPage {
       console.log(token)
       this.profileProvider.retrieveOrders({ token: token }).subscribe(orders => {
         console.log(orders)
+        this.orderArray = orders
       })
     })
   }

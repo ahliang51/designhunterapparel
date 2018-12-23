@@ -16,7 +16,7 @@ module.exports = {
   bigCommerceClientSecret: 'f1d8um6dix67sr59cljwk2ytq663rfx',
 
   storeImagePath: 'https://store-5q1eg0d0bi.mybigcommerce.com/product_images/',
-
+  storeUrl: 'https://store-5q1eg0d0bi.mybigcommerce.com',
 
   mySqlHost: 'ec2-18-219-254-128.us-east-2.compute.amazonaws.com',
   mySqlUser: 'root',

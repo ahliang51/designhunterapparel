@@ -23,5 +23,9 @@ export class AccountDetailComponent {
     this.navCtrl.push('account-orders')
   }
 
+  myInfo() {
+    this.navCtrl.push('account-info')
+  }
+
 
 }

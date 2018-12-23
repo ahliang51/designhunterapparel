@@ -4,14 +4,71 @@
 let express = require('express')
 let router = express.Router()
 let async = require('async')
-// let config = require('../config/config')
+let config = require('../config/config')
 let isAuthenticated = require('../global/global-function')
+let request = require('request')
 
 router.post('/retrieve-orders', isAuthenticated, (req, res, next) => {
   let bigCommerce = req.bigCommerce;
 
-  //Retrieve CustomerId from middleware
-  bigCommerce.get('/orders?include=images&customer_id=' + req.customerId)
+  async.waterfall([
+    retrieveOrders,
+    retrieveProductInfo,
+  ], (err, result) => {
+    if (err) {
+      res.json({
+        responseStatus: false,
+        error: err
+      })
+    } else {
+      res.json(result)
+    }
+  });
+
+  function retrieveOrders(callback) {
+    //Retrieve CustomerId from middleware
+    bigCommerce.get('/orders?include=images&customer_id=' + req.customerId)
+      .then(data => {
+        callback(null, data);
+      })
+      .catch(err => {
+        if (err) {
+          console.log(err)
+          callback(err);
+        }
+      })
+  };
+
+  function retrieveProductInfo(orders, callback) {
+    async.each(orders, (order, asyncCallback) => {
+      console.log(order)
+
+      bigCommerce.get(order.products.resource + "?include=images").then(info => {
+        order.products = info
+        asyncCallback()
+      })
+    }, (err) => {
+      // console.log(orders)
+      if (err) {
+        callback(err)
+      } else {
+        callback(null, orders)
+      }
+    })
+
+    // for (let order of orders) {
+    //   bigCommerce.get(order.products.resource).then(info => {
+    //     order.products = info
+    //   })
+    // }
+
+  }
+
+})
+
+router.post('/retrieve-customer-info', isAuthenticated, (req, res, next) => {
+  let bigCommerce = req.bigCommerce;
+  bigCommerce.get('/customers/' + req.customerId)
     .then(data => {
       res.json(data)
     })
@@ -19,18 +76,31 @@ router.post('/retrieve-orders', isAuthenticated, (req, res, next) => {
 
 router.get('/retrieve-order', (req, res, next) => {
   let bigCommerce = req.bigCommerce;
-  bigCommerce.get('/orders/145?include=images')
+  bigCommerce.get('/orders/145/products?include=image')
     .then(data => {
       res.json(data)
     })
 })
 
 router.get('/test', (req, res, next) => {
-  let bigCommerce = req.bigCommerce;
-  bigCommerce.get('/orders/146/products')
-    .then(data => {
-      res.json(data)
-    })
+  // let bigCommerce = req.bigCommerce;
+  // bigCommerce.get('/storefront/orders/145')
+  //   .then(data => {
+  //     res.json(data)
+  //   })
+  console.log(config.storeUrl + "/api/storefront/orders/145")
+  request({
+    headers: {
+      'store_hash': config.store_hash,
+      'x-auth-token': config.bigCommerceAccessToken,
+      'x-auth-client': config.bigCommerceClientId
+    },
+    uri: config.storeUrl + "/api/storefront/orders/145"
+  }, (error, response, body) => {
+    console.log(error)
+    console.log(body)
+    res.json(response)
+  })
 })
 
 

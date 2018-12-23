@@ -1,0 +1,92 @@
+<!--
+  Generated template for the AccountInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>My Account</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding-bottom>
+  <form [formGroup]="updateForm" (ngSubmit)="updateForm()">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>First Name
+        </ion-label>
+        <ion-input type="text" formControlName="firstName">
+        </ion-input>
+      </ion-item>
+      <ion-label *ngIf="updateForm.controls.firstName.errors && (updateForm.controls.firstName.touched || updateForm.controls.firstName.dirty)"
+        padding-left class="error-text">
+        Please input first name
+      </ion-label>
+      <ion-item>
+        <ion-label stacked>Last Name
+        </ion-label>
+        <ion-input type="text" formControlName="lastName">
+        </ion-input>
+      </ion-item>
+      <ion-label *ngIf="updateForm.controls.lastName.errors && (updateForm.controls.lastName.touched || updateForm.controls.lastName.dirty)"
+        padding-left class="error-text">
+        Please input first name
+      </ion-label>
+      <ion-item>
+        <ion-label stacked>Email
+        </ion-label>
+        <ion-input type="email" formControlName="email">
+        </ion-input>
+      </ion-item>
+      <ion-label *ngIf="updateForm.controls.email.errors && (updateForm.controls.email.touched || updateForm.controls.email.dirty)"
+        padding-left class="error-text">
+        Incorrect email format
+      </ion-label>
+      <ion-item>
+        <ion-label stacked>Phone Number
+        </ion-label>
+        <ion-input type="number" formControlName="phoneNumber">
+        </ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="key" item-left></ion-icon>
+        </ion-label>
+        <ion-input placeholder="Password" type="password" formControlName="password">
+        </ion-input>
+      </ion-item>
+      <ion-label *ngIf="updateForm.controls.password.errors?.required && (updateForm.controls.password.touched || updateForm.controls.password.dirty)"
+        padding-left class="error-text">
+        Please input password
+      </ion-label>
+      <ion-label *ngIf="updateForm.controls.password.errors?.pattern && (updateForm.controls.password.touched || updateForm.controls.password.dirty)"
+        padding-left class="error-text">
+        Passwords must be at least 7 characters <br>
+        and contain both alphabetic <br>
+        and numeric characters.
+      </ion-label>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="key" item-left></ion-icon>
+        </ion-label>
+        <ion-input placeholder="Confirm Password" type="password" formControlName="confirmPassword">
+        </ion-input>
+      </ion-item>
+      <ion-label *ngIf="updateForm.controls.confirmPassword.errors && (updateForm.controls.confirmPassword.touched || updateForm.controls.confirmPassword.dirty)"
+        padding-left class="error-text">
+        Password is not the same
+      </ion-label>
+
+      <div text-center>
+        <button ion-button color="dark" class="sign-up" type="submit" [disabled]="!updateForm.valid">Sign Up</button>
+      </div>
+    </ion-list>
+  </form>
+
+</ion-content>
