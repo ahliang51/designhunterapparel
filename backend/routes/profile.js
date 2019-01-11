@@ -1,5 +1,4 @@
 'use strict'
-
 // Import
 let express = require('express')
 let router = express.Router()
@@ -68,8 +67,54 @@ router.post('/retrieve-orders', isAuthenticated, (req, res, next) => {
 
 router.post('/retrieve-customer-info', isAuthenticated, (req, res, next) => {
   let bigCommerce = req.bigCommerce;
-  bigCommerce.get('/customers/' + req.customerId)
+
+  async.waterfall([
+    retrieveCustomerInfo,
+    retrieveShippingInfo,
+  ], (err, result) => {
+    if (err) {
+      res.json({
+        responseStatus: false,
+        error: err
+      })
+    } else {
+      res.json(result)
+    }
+  });
+
+  function retrieveCustomerInfo(callback) {
+    bigCommerce.get('/customers/' + req.customerId)
+      .then(info => {
+        callback(null, info)
+      })
+      .catch(err => {
+        if (err) {
+          callback(err)
+        }
+      })
+  }
+
+  function retrieveShippingInfo(customerInfo, callback) {
+    bigCommerce.get(customerInfo.addresses.resource)
+      .then(shippingInfo => {
+        customerInfo.addresses = shippingInfo
+        callback(null, customerInfo)
+      })
+      .catch(err => {
+        if (err) {
+          callback(err)
+        }
+      })
+  }
+
+
+})
+
+router.post('/teste', (req, res, next) => {
+  let bigCommerce = req.bigCommerce;
+  bigCommerce.get('/customers/87/addresses')
     .then(data => {
+      console.log(data)
       res.json(data)
     })
 })
@@ -95,7 +140,7 @@ router.get('/test', (req, res, next) => {
       'x-auth-token': config.bigCommerceAccessToken,
       'x-auth-client': config.bigCommerceClientId
     },
-    uri: config.storeUrl + "/api/storefront/orders/145"
+    uri: config.storeUrl + "/api/storefront/orders/128"
   }, (error, response, body) => {
     console.log(error)
     console.log(body)

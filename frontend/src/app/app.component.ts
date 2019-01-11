@@ -12,7 +12,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // rootPage: any = HomePage;
-  rootPage: any = "account-info";
+  rootPage: any = "home";
 
   pages: Array<{ title: string, component: any }>;
 
@@ -27,7 +27,7 @@ export class MyApp {
     this.pages = [
       { title: 'MY ACCOUNT', component: "account" },
       { title: 'CONTACT US', component: "contact-us" },
-      { title: 'LOG OUT', component: "account" }
+      // { title: 'LOG OUT', component: "account" }
     ];
 
   }

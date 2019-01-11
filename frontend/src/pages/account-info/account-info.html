@@ -52,39 +52,8 @@
         <ion-input type="number" formControlName="phoneNumber">
         </ion-input>
       </ion-item>
-
-
-      <ion-item>
-        <ion-label>
-          <ion-icon name="key" item-left></ion-icon>
-        </ion-label>
-        <ion-input placeholder="Password" type="password" formControlName="password">
-        </ion-input>
-      </ion-item>
-      <ion-label *ngIf="updateForm.controls.password.errors?.required && (updateForm.controls.password.touched || updateForm.controls.password.dirty)"
-        padding-left class="error-text">
-        Please input password
-      </ion-label>
-      <ion-label *ngIf="updateForm.controls.password.errors?.pattern && (updateForm.controls.password.touched || updateForm.controls.password.dirty)"
-        padding-left class="error-text">
-        Passwords must be at least 7 characters <br>
-        and contain both alphabetic <br>
-        and numeric characters.
-      </ion-label>
-      <ion-item>
-        <ion-label>
-          <ion-icon name="key" item-left></ion-icon>
-        </ion-label>
-        <ion-input placeholder="Confirm Password" type="password" formControlName="confirmPassword">
-        </ion-input>
-      </ion-item>
-      <ion-label *ngIf="updateForm.controls.confirmPassword.errors && (updateForm.controls.confirmPassword.touched || updateForm.controls.confirmPassword.dirty)"
-        padding-left class="error-text">
-        Password is not the same
-      </ion-label>
-
       <div text-center>
-        <button ion-button color="dark" class="sign-up" type="submit" [disabled]="!updateForm.valid">Sign Up</button>
+        <button ion-button color="blue" class="sign-up" type="submit" [disabled]="!updateForm.valid">Update Info</button>
       </div>
     </ion-list>
   </form>

@@ -58,8 +58,10 @@
       </ion-grid>
     </ion-item>
 
-    <div text-center *ngIf="productDetail" (click)="addToCart()">
-      <button ion-button color="dark" class="add-to-bag">Add to Bag
+    <div text-center *ngIf="productDetail">
+      <button ion-button color="dark" class="add-to-bag" [disabled]="!isOptionSelected && variantArray.length > 1"
+        (click)="addToCart()">Add to
+        Bag
         <ion-icon name="briefcase" class="add-to-bag-icon"></ion-icon>
       </button>
     </div>

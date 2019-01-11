@@ -28,4 +28,8 @@ router.get('/contact-us', (req, res, next) => {
  })
 })
 
+router.get('/currency', (req, res, next) => {
+ let bigCommerce = req.bigCommerce;
+})
+
 module.exports = router

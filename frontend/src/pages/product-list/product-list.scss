@@ -1,3 +1,10 @@
 page-product-list {
+  .old-price {
+    text-decoration: line-through;
+    float: right;
+  }
 
+  .new-price {
+    float: left;
+  }
 }

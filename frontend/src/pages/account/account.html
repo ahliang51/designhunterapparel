@@ -13,6 +13,6 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <account-detail></account-detail>
-  <!-- <login></login> -->
+  <account-detail *ngIf="isLoggedIn"></account-detail>
+  <login *ngIf="!isLoggedIn"></login>
 </ion-content>

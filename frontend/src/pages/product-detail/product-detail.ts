@@ -29,6 +29,7 @@ export class ProductDetailPage {
   variantArray = [];
   variantIndex = 0;
   selectedOption = "Select Option";
+  isOptionSelected = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -72,6 +73,7 @@ export class ProductDetailPage {
           description: optionName
         })
       }
+      console.log(this.variantArray)
     })
   }
 
@@ -88,6 +90,7 @@ export class ProductDetailPage {
     }).then(
       result => {
         this.selectedOption = result[0].description
+        this.isOptionSelected = true
         this.variantIndex = result[0].index
         console.log(result[0].description + ' at index: ' + result[0].index);
       },
@@ -145,33 +148,44 @@ export class ProductDetailPage {
       else {
         this.storage.get('token').then(token => {
           console.log(token)
-          let product = [{
-            "quantity": 1,
-            "product_id": this.productId,
-            "variant_id": this.productDetail.variants[this.variantIndex].id
-          }]
-          this.cartProvider.createCart(token, product).subscribe(cart => {
-            console.log(cart)
-            loading.dismiss();
+          if (!token) {
+            let toast = this.toastCtrl.create({
+              message: 'Please Sign in first',
+              duration: 2000,
+              position: 'bottom'
+            });
+            toast.present()
+            loading.dismiss()
+          }
+          else {
+            let product = [{
+              "quantity": 1,
+              "product_id": this.productId,
+              "variant_id": this.productDetail.variants[this.variantIndex].id
+            }]
+            this.cartProvider.createCart(token, product).subscribe(cart => {
+              console.log(cart)
+              loading.dismiss();
 
-            if (cart.responseStatus) {
-              this.storage.set('cartId', cart.cart.data.id)
-              let toast = this.toastCtrl.create({
-                message: 'Added To Cart',
-                duration: 2000,
-                position: 'bottom'
-              });
-              toast.present();
-            }
-            else {
-              let toast = this.toastCtrl.create({
-                message: 'Error ' + cart.error.code,
-                duration: 2000,
-                position: 'bottom'
-              });
-              toast.present();
-            }
-          })
+              if (cart.responseStatus) {
+                this.storage.set('cartId', cart.cart.data.id)
+                let toast = this.toastCtrl.create({
+                  message: 'Added To Cart',
+                  duration: 2000,
+                  position: 'bottom'
+                });
+                toast.present();
+              }
+              else {
+                let toast = this.toastCtrl.create({
+                  message: 'Error ' + cart.error.code,
+                  duration: 2000,
+                  position: 'bottom'
+                });
+                toast.present();
+              }
+            })
+          }
         })
       }
     })

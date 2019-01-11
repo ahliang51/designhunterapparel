@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the AccountPage page.
@@ -17,11 +18,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AccountPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  isLoggedIn: boolean = false
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public storage: Storage,
+    public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AccountPage');
+    let loading = this.loadingCtrl.create({
+      content: 'Fetching data',
+      spinner: 'dots',
+    });
+
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 10000);
+
+    this.storage.get('token').then(token => {
+      if (token) {
+        this.isLoggedIn = true
+      }
+      else {
+        this.isLoggedIn = false
+      }
+      loading.dismiss()
+    })
   }
 
 

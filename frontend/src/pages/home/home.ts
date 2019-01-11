@@ -3,10 +3,6 @@ import { NavController, AlertController, LoadingController, IonicPage } from 'io
 import { ProductProvider } from '../../providers/product/product';
 import { ProductDetailPage } from '../product-detail/product-detail';
 import _ from 'underscore';
-import { AuthenticateProvider } from '../../providers/authenticate/authenticate';
-import { Storage } from '@ionic/storage';
-import { BagPage } from '../bag/bag';
-
 @IonicPage({
   name: "home"
 })

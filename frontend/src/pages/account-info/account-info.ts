@@ -21,7 +21,6 @@ import { PasswordValidation } from '../../shared/password.validator';
 })
 export class AccountInfoPage {
 
-  infoArray
   updateForm: FormGroup;
 
   constructor(public navCtrl: NavController,
@@ -37,18 +36,32 @@ export class AccountInfoPage {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern('[^@]+@[^\.]+\..+')]],
       phoneNumber: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(7), Validators.pattern('^[A-Za-z0-9]{7,}$')]],
-      confirmPassword: ['', Validators.required],
-    }, { validator: PasswordValidation.MatchPassword });
+    });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AccountInfoPage');
+    let loading = this.loadingCtrl.create({
+      content: 'Fetching data',
+      spinner: 'dots',
+    });
+
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 10000);
+
     this.storage.get('token').then(token => {
       console.log(token)
       this.profileProvider.retrieveInfo({ token: token }).subscribe(info => {
         console.log(info)
-        this.infoArray = info
+        this.updateForm.patchValue({
+          firstName: info.first_name,
+          lastName: info.last_name,
+          email: info.email,
+          phoneNumber: info.phone
+        })
+        loading.dismiss()
       })
     })
   }
