@@ -25,6 +25,7 @@ router.get('/retrieve-all-products', (req, res, next) => {
 
 router.post('/product-detail', (req, res, next) => {
   bigCommerceV3 = req.bigCommerceV3
+  // console.log(req.body.productId)
   bigCommerceV3.get('/catalog/products/' + req.body.productId + '?include=images,variants')
     .then(productDetail => {
       res.json({
@@ -84,7 +85,7 @@ router.get('/product-categories', (req, res, next) => {
 
 router.post('/filter-product-by-categories', (req, res, next) => {
   bigCommerceV3 = req.bigCommerceV3;
-  console.log(req.body.categoryId)
+  // console.log(req.body.categoryId)
   bigCommerceV3.get('/catalog/products?include=images&categories=' + req.body.categoryId)
     .then(data => {
       res.json(data)
@@ -99,10 +100,21 @@ router.post('/filter-product-by-categories', (req, res, next) => {
 
 
 
-// router.post('/banner', (req, res, next) => {
-//     bigCommerce = req.bigCommerce;
-//     bigCommerce.get('/banners')
-//         .then(data => res.json(data));
-// });
+router.post('/test', (req, res, next) => {
+  bigCommerceV3 = req.bigCommerceV3
+  bigCommerceV3.get('/catalog/products/143?include=images,variants')
+    .then(productDetail => {
+      res.json({
+        responseStatus: true,
+        result: productDetail
+      })
+    })
+    .catch(err => {
+      res.json({
+        responseStatus: false,
+        error: err
+      })
+    })
+})
 
 module.exports = router

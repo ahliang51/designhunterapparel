@@ -1,4 +1,6 @@
 page-home {
+  $font-family-base: "Open Sans", sans-serif !default;
+
   .search-icon {
     margin-right: 3%;
   }
@@ -17,4 +19,8 @@ page-home {
     font-size: 0.4em;
   }
 
+  ion-title {
+    font-family: "Helvetica" !important;
+    font-weight: bold !important;
+  }
 }

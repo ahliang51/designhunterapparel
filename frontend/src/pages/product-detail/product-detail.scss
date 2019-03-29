@@ -1,34 +1,48 @@
 page-product-detail {
 
-  ion-header {
-    // height:
+  .toolbar-background {
+    background-color: white;
   }
 
   ion-content {
-    .product-images {
-      width: 100%;
-    }
 
-    .main-content {
-      width: 100%;
-      background-color: white;
-    }
-
-    .product-detail-first-row {
-      height: 10vh;
+    img {
+      // image-rendering: crisp-edges;
+      width: 100% !important;
     }
 
     .product-name {
-      font-size: 1.2em;
+      float: left;
     }
 
+    .product-price {
+      float: right;
+      text-align: right;
+    }
+
+
+    // .main-content {
+    //   width: 100%;
+    //   background-color: white;
+    // }
+
+    // .product-detail-first-row {
+    //   height: 10vh;
+    // }
+
+    // .product-name {
+    //   font-size: 1.2em;
+    // }
+
     .add-to-bag {
-      width: 80%;
+      height: 50px !important;
+      width: 92.5%;
     }
 
     .select-option-button {
       width: 92.5%;
-      margin-top: 5%;
+      // margin-top: 5%;
+      height: 50px !important;
     }
 
     .add-to-bag-icon {
@@ -36,31 +50,31 @@ page-product-detail {
       font-size: 1.5em;
     }
 
-    .arrow-icon {
-      margin-left: 5%;
-      font-size: 1.5em;
-    }
+    // .arrow-icon {
+    //   margin-left: 5%;
+    //   font-size: 1.5em;
+    // }
 
-    .product-price {
-      text-align: right;
-    }
+    // .product-price {
+    //   text-align: right;
+    // }
 
-    .segment-button {
-      font-size: 1.05em !important;
-    }
+    // .segment-button {
+    //   font-size: 1.05em !important;
+    // }
 
-    .detail-label {
-      border: 1px solid black;
-      padding: 1% !important;
-    }
+    // .detail-label {
+    //   border: 1px solid black;
+    //   padding: 1% !important;
+    // }
 
-    .swiper-pagination-bullet-active {
-      background: black;
-      size: 2em !important;
-      height: 15px;
-      width: 15px;
-      border: 2px solid white;
-    }
+    // .swiper-pagination-bullet-active {
+    //   background: black;
+    //   size: 2em !important;
+    //   height: 15px;
+    //   width: 15px;
+    //   border: 2px solid white;
+    // }
 
   }
 }

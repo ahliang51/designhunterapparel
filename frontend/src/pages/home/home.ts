@@ -3,6 +3,7 @@ import { NavController, AlertController, LoadingController, IonicPage } from 'io
 import { ProductProvider } from '../../providers/product/product';
 import { ProductDetailPage } from '../product-detail/product-detail';
 import _ from 'underscore';
+
 @IonicPage({
   name: "home"
 })
@@ -72,6 +73,10 @@ export class HomePage {
 
   onBag() {
     this.navCtrl.push("bag")
+  }
+
+  onSearch() {
+    this.navCtrl.push("search")
   }
 
   onTabSelect(ev: any) {

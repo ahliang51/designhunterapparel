@@ -25,9 +25,11 @@ export class ProductDetailPage {
 
   productId;
   productDetail;
+  productPrice;
   imageArray;
   variantArray = [];
   variantIndex = 0;
+  itemQuantity = 1;
   selectedOption = "Select Option";
   isOptionSelected = false;
 
@@ -43,7 +45,7 @@ export class ProductDetailPage {
   }
 
   getDeviceHeight() {
-    return (window.screen.height * 0.9) + "px"; //To set the image to 80% of the height
+    return (window.screen.height * 0.80) + "px"; //To set the image to 80% of the height
   }
 
   ionViewDidLoad() {
@@ -58,30 +60,50 @@ export class ProductDetailPage {
       loading.dismiss();
     }, 10000);
 
-    this.productProvider.retrieveProductDetail(this.productId).subscribe(productDetail => {
-      loading.dismiss();
-      console.log(productDetail.result.data)
-      this.productDetail = productDetail.result.data;
-      this.imageArray = _.sortBy(productDetail.result.data.images, 'sort_order');
-      for (let variant of this.productDetail.variants) {
-        let optionName = "";
-        for (let option of variant.option_values) {
-          optionName = optionName + " " + option.label
+    if (this.productId != "") {
+
+      this.productProvider.retrieveProductDetail(this.productId).subscribe(productDetail => {
+        loading.dismiss();
+        // console.log(productDetail.result.data)
+        this.productDetail = productDetail.result.data;
+        this.productPrice = this.productDetail.price
+        this.imageArray = _.sortBy(productDetail.result.data.images, 'sort_order');
+        for (let variant of this.productDetail.variants) {
+          let optionName = "";
+          console.log(variant)
+          for (let option of variant.option_values) {
+            optionName = optionName + " " + option.label
+
+          }
+          if (variant.price) {
+            optionName = optionName + " - $" + variant.price
+          }
+
+          this.variantArray.push({
+            variantId: variant.id,
+            description: optionName,
+            price: variant.price
+          })
         }
-        this.variantArray.push({
-          variantId: variant.id,
-          description: optionName
-        })
-      }
-      console.log(this.variantArray)
-    })
+        console.log(productDetail)
+        // console.log(this.variantArray)
+      })
+      // console.log(this.productDetail)
+    }
   }
 
   selectOption() {
+
     this.selector.show({
       title: "Select Options",
       items: [
-        this.variantArray
+        this.variantArray, [{
+          description: "1 Quantity"
+        }, {
+          description: "2 Quantity"
+        }, {
+          description: "3 Quantity"
+        }]
       ],
       positiveButtonText: "Select",
       defaultItems: [
@@ -92,7 +114,10 @@ export class ProductDetailPage {
         this.selectedOption = result[0].description
         this.isOptionSelected = true
         this.variantIndex = result[0].index
-        console.log(result[0].description + ' at index: ' + result[0].index);
+        this.itemQuantity = result[1].index + 1
+        console.log(this.variantArray[result[0].index].price)
+        this.productPrice = this.variantArray[result[0].index].price
+        console.log(result[0].description + ' at index: ' + result[0].index + " with " + this.itemQuantity);
       },
       err => console.log('Error: ', err)
     );
@@ -117,7 +142,7 @@ export class ProductDetailPage {
       if (cartId) {
         console.log(cartId)
         let product = [{
-          "quantity": 1,
+          "quantity": this.itemQuantity,
           "product_id": this.productId,
           "variant_id": this.productDetail.variants[this.variantIndex].id
         }]
@@ -159,7 +184,7 @@ export class ProductDetailPage {
           }
           else {
             let product = [{
-              "quantity": 1,
+              "quantity": this.itemQuantity,
               "product_id": this.productId,
               "variant_id": this.productDetail.variants[this.variantIndex].id
             }]

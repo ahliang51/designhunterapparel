@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ProductDetailPage } from './product-detail';
 import { DirectivesModule } from '../../directives/directives.module';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { DirectivesModule } from '../../directives/directives.module';
   ],
   imports: [
     IonicPageModule.forChild(ProductDetailPage),
-    DirectivesModule
+    DirectivesModule,
+    IonicImageLoader
   ],
 })
 export class ProductDetailPageModule { }

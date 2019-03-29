@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{categoryName}}</ion-title>
+    <ion-title class="category-name">{{categoryName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,6 +17,8 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let product of productArray" col-6 (click)="onProductDetail(product.id)">
+        <ion-spinner *ngIf="!product"></ion-spinner>
+
         <img-loader src="{{product.images[0].url_standard}}" useImg></img-loader>
         <ion-label>
           {{product.name}}
