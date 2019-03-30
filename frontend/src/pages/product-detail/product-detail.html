@@ -14,7 +14,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content *ngIf="productDetail">
-  <ion-slides pager="true" *ngIf="productDetail" autoHeight>
+  <ion-slides pager="true" *ngIf="productDetail" preloadImages="true" updateOnImagesReady="true">
     <ion-slide *ngFor="let image of imageArray">
       <img src="{{image.url_zoom}}">
     </ion-slide>

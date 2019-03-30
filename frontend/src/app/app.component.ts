@@ -27,6 +27,7 @@ export class MyApp {
     this.pages = [
       { title: 'MY ACCOUNT', component: "account" },
       { title: 'CONTACT US', component: "contact-us" },
+      { title: 'SiZING GUIDE', component: "sizing" },
       // { title: 'LOG OUT', component: "account" }
     ];
 

@@ -24,4 +24,11 @@ export class StoreProvider {
       .map(res => res.json());
   }
 
+  sizingGuide() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(vars.apiUrl + '/store/sizing', { headers: headers })
+      .map(res => res.json());
+  }
+
 }
