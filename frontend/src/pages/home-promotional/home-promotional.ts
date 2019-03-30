@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
 import { ProductListPage } from '../product-list/product-list';
+import { StoreProvider } from '../../providers/store/store';
 
 /**
  * Generated class for the HomePromotionalPage page.
@@ -19,22 +20,41 @@ import { ProductListPage } from '../product-list/product-list';
 })
 export class HomePromotionalPage {
 
-  promoProduct
+  promoProduct;
+  banners = [];
   rootNavCtrl: NavController;
+  storePath = "http://store-5q1eg0d0bi.mybigcommerce.com/";
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public productProvider: ProductProvider,
+    public storeProvider: StoreProvider,
     public loadingCtrl: LoadingController) {
     this.rootNavCtrl = navParams.get('rootNavCtrl');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePromotionalPage');
+    this.storeProvider.retrieveBanners().subscribe(data => {
+      for (let banner of data) {
+        let source = banner.content;
+        let index = banner.content.search('src');
+        // let fileType = banner.content.search('png');
+        let fileType = banner.content.indexOf("png", banner.content.indexOf("png") + 1);
+        let imagePath = this.storePath + source.substring(index + 28, fileType + 3)
+        this.banners.push({
+          src: imagePath
+        });
+      }
+      console.log(this.banners)
+    })
+
     this.productProvider.retrievePromoProductCategories().subscribe(promoProduct => {
       this.promoProduct = promoProduct;
       console.log(this.promoProduct)
     })
+
+
   }
 
   filterProductByCategories(categoryName, categoryId) {

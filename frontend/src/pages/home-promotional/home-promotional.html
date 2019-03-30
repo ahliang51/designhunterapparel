@@ -5,6 +5,11 @@
   Ionic pages and navigation.
 -->
 <ion-content padding>
+  <ion-slides *ngIf="banners && banners.length" pager="true" autoplay="3000" loop="true" effect="slide" speed="300">
+    <ion-slide *ngFor="let banner of banners">
+      <img src={{banner.src}}>
+    </ion-slide>
+  </ion-slides>
   <ion-grid>
     <ion-row *ngFor="let promo of promoProduct">
       <img-loader src="{{promo.image_file}}" useImg (click)="filterProductByCategories(promo.name,promo.id)">

@@ -56,4 +56,10 @@ router.get('/sizing', (req, res, next) => {
  })
 })
 
+router.get('/banner', (req, res, next) => {
+ let bigCommerce = req.bigCommerce;
+ bigCommerce.get('/banners')
+  .then(data => res.json(data));
+});
+
 module.exports = router

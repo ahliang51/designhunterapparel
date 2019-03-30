@@ -31,4 +31,11 @@ export class StoreProvider {
       .map(res => res.json());
   }
 
+  retrieveBanners() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(vars.apiUrl + '/store/banner', { headers: headers })
+      .map(res => res.json());
+  }
+
 }
