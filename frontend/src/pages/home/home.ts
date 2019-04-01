@@ -40,7 +40,6 @@ export class HomePage {
     }, 10000);
 
     this.productProvider.retrieveAllProducts().subscribe(products => {
-      console.log(products)
       loading.dismiss();
       if (products.responseStatus) {
         for (let product of products.result.data) {
@@ -51,7 +50,6 @@ export class HomePage {
             price: product.price
           })
         }
-        console.log(this.productArray);
       }
       else {
         let alert = this.alertCtrl.create({
@@ -61,7 +59,6 @@ export class HomePage {
         });
         alert.present();
       }
-      console.log(this.productArray)
     })
   }
 
@@ -80,7 +77,6 @@ export class HomePage {
   }
 
   onTabSelect(ev: any) {
-    console.log('Tab selected', 'Index: ' + ev.index, 'Unique ID: ' + ev.id);
     this.tabName = ev.id;
   }
 }

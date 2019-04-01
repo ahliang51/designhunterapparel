@@ -19,7 +19,12 @@
       <ion-col *ngFor="let product of productArray" col-6 (click)="onProductDetail(product.id)">
         <ion-spinner *ngIf="!product"></ion-spinner>
 
-        <img-loader src="{{product.images[0].url_standard}}" useImg></img-loader>
+        <div *ngFor="let image of product.images">
+          <div *ngIf="image.is_thumbnail">
+            <img-loader src="{{image.url_standard}}" useImg></img-loader>
+          </div>
+        </div>
+
         <ion-label>
           {{product.name}}
         </ion-label>

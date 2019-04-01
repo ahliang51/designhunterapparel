@@ -14,7 +14,6 @@ import * as vars from '../../global-variable';
 export class CustomerProvider {
 
   constructor(public http: Http) {
-    console.log('Hello CustomerProvider Provider');
   }
 
   signUp(credentials) {

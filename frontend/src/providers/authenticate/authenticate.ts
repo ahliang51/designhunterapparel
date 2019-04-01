@@ -14,7 +14,6 @@ import * as vars from '../../global-variable';
 export class AuthenticateProvider {
 
   constructor(public http: Http) {
-    console.log('Hello AuthenticateProvider Provider');
   }
 
   authenticated(token) {

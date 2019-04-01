@@ -53,7 +53,6 @@ export class LoginComponent {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
     }).subscribe(result => {
-      console.log(result)
       if (result.responseStatus) {
         this.storage.set('token', result.token)
         let toast = this.toastCtrl.create({

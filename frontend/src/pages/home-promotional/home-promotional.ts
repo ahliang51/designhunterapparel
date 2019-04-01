@@ -23,7 +23,7 @@ export class HomePromotionalPage {
   promoProduct;
   banners = [];
   rootNavCtrl: NavController;
-  storePath = "http://store-5q1eg0d0bi.mybigcommerce.com/";
+  storePath = "http://store-5q1eg0d0bi.mybigcommerce.com";
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,7 +34,6 @@ export class HomePromotionalPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePromotionalPage');
     this.storeProvider.retrieveBanners().subscribe(data => {
       for (let banner of data) {
         let source = banner.content;
@@ -46,19 +45,15 @@ export class HomePromotionalPage {
           src: imagePath
         });
       }
-      console.log(this.banners)
     })
 
     this.productProvider.retrievePromoProductCategories().subscribe(promoProduct => {
       this.promoProduct = promoProduct;
-      console.log(this.promoProduct)
     })
-
 
   }
 
   filterProductByCategories(categoryName, categoryId) {
-    console.log(categoryId)
     let loading = this.loadingCtrl.create({
       content: 'Fetching data',
       spinner: 'dots',
@@ -71,9 +66,7 @@ export class HomePromotionalPage {
     }, 10000);
 
     this.productProvider.filterProductByCategories(categoryId).subscribe(products => {
-      console.log(products);
       loading.dismiss();
-      console.log(categoryName)
       this.rootNavCtrl.push("product-list", {
         categoryName: categoryName,
         productsArray: products

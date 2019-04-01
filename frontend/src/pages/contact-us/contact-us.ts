@@ -26,17 +26,14 @@ export class ContactUsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContactUsPage');
     let loading = this.loadingCtrl.create({
       content: 'Fetching data',
       spinner: 'dots',
     });
     loading.present();
     this.storeProvider.contactUs().subscribe(contactUs => {
-      console.log(contactUs)
       this.contactUs = contactUs
       loading.dismiss();
-      console.log(this.contactUs)
     })
   }
 

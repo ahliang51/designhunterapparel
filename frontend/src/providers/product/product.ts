@@ -15,7 +15,6 @@ import * as vars from '../../global-variable';
 export class ProductProvider {
 
   constructor(public http: Http) {
-    console.log('Hello ProductProvider Provider');
   }
 
   retrieveAllProducts() {

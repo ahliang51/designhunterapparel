@@ -27,7 +27,6 @@ export class ProductListPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductListPage');
   }
 
   onProductDetail(productId) {

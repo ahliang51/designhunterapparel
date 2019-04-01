@@ -15,7 +15,6 @@ import * as vars from '../../global-variable';
 export class ProfileProvider {
 
   constructor(public http: Http) {
-    console.log('Hello ProfileProvider Provider');
   }
 
   retrieveOrders(jwtToken) {

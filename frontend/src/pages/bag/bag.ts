@@ -51,20 +51,16 @@ export class BagPage {
         this.cartProvider.retrieveCart(cartId).subscribe(cartInfo => {
           loading.dismiss();
 
-          console.log(cartInfo)
           this.cartInfo = cartInfo
           this.cartAmount = cartInfo.data.cart_amount
           this.cartSize = cartInfo.data.line_items.physical_items.length
           this.cartArray = cartInfo.data.line_items.physical_items
 
           for (let item of this.cartArray) {
-            console.log(item)
             for (let option of item.options) {
               item.variantText += option.name + " " + option.value + " \n";
-              console.log(this.variantText)
             }
           }
-          console.log(this.cartArray)
         })
       }
       else {
@@ -88,7 +84,6 @@ export class BagPage {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
           }
         },
         {
@@ -100,10 +95,8 @@ export class BagPage {
             });
             loading.present();
             if (this.cartArray.length > 1) {
-              // console.log(JSON.stringify(this.cartArray))
               this.storage.get('cartId').then(cart => {
                 this.cartProvider.removeItem(cart, localCart[index].id).subscribe(result => {
-                  // console.log(JSON.stringify(result))
                   this.ionViewDidLoad();
 
                 })
@@ -145,7 +138,6 @@ export class BagPage {
     alert.addButton({
       text: 'Update',
       handler: data => {
-        console.log('radio data:', data);
         this.testradioOpen = false;
         this.testradioResult = data;
         let loading = this.loadingCtrl.create({
@@ -184,7 +176,6 @@ export class BagPage {
 
     let paymentMade = false;
     this.storage.get('cartId').then(cartId => {
-      console.log(cartId)
       this.storage.get('token').then(token => {
         this.cartProvider.placeOrder(token, cartId).subscribe(data => {
           loading.dismiss();

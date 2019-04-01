@@ -27,17 +27,14 @@ export class SizingPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SizingPage');
     let loading = this.loadingCtrl.create({
       content: 'Fetching data',
       spinner: 'dots',
     });
     loading.present();
     this.storeProvider.sizingGuide().subscribe(contactUs => {
-      console.log(contactUs)
       this.sizingGuide = contactUs
       loading.dismiss();
-      console.log(this.sizingGuide)
     })
   }
 

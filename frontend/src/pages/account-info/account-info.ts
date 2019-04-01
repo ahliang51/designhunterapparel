@@ -52,9 +52,7 @@ export class AccountInfoPage {
     }, 10000);
 
     this.storage.get('token').then(token => {
-      console.log(token)
       this.profileProvider.retrieveInfo({ token: token }).subscribe(info => {
-        console.log(info)
         this.updateForm.patchValue({
           firstName: info.first_name,
           lastName: info.last_name,

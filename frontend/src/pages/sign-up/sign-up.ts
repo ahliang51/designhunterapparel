@@ -54,7 +54,6 @@ export class SignUpPage implements OnInit {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignUpPage');
   }
 
   ionViewDidEnter() {
@@ -75,7 +74,6 @@ export class SignUpPage implements OnInit {
     loading.present();
 
     this.customerProvider.signUp(this.signUp.value).subscribe(result => {
-      console.log(result)
       if (result.responseStatus) {
         this.storage.set('token', result.token)
         let toast = this.toastCtrl.create({

@@ -28,11 +28,8 @@ export class AccountOrdersPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AccountOrdersPage');
     this.storage.get('token').then(token => {
-      console.log(token)
       this.profileProvider.retrieveOrders({ token: token }).subscribe(orders => {
-        console.log(orders)
         this.orderArray = orders
       })
     })

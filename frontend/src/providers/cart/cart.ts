@@ -14,7 +14,6 @@ import * as vars from '../../global-variable';
 export class CartProvider {
 
   constructor(public http: Http) {
-    console.log('Hello CartProvider Provider');
   }
 
   createCart(token, cart) {

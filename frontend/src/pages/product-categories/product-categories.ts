@@ -38,15 +38,12 @@ export class ProductCategoriesPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductCategoriesPage');
     this.productProvider.retrieveProductCategories().subscribe(productCategories => {
-      console.log(productCategories)
       this.productCategories = productCategories
     })
   }
 
   filterProductByCategories(categoryName, categoryId) {
-    console.log(categoryId)
     let loading = this.loadingCtrl.create({
       content: 'Fetching data',
       spinner: 'dots',
@@ -59,9 +56,7 @@ export class ProductCategoriesPage {
     }, 10000);
 
     this.productProvider.filterProductByCategories(categoryId).subscribe(products => {
-      console.log(products);
       loading.dismiss();
-      console.log(categoryName)
       this.rootNavCtrl.push("product-list", {
         categoryName: categoryName,
         productsArray: products
