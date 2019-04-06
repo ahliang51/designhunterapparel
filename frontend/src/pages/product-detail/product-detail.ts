@@ -64,13 +64,12 @@ export class ProductDetailPage {
 
       this.productProvider.retrieveProductDetail(this.productId).subscribe(productDetail => {
         loading.dismiss();
-        // console.log(productDetail.result.data)
+        console.log(productDetail.result.data)
         this.productDetail = productDetail.result.data;
         this.productPrice = this.productDetail.price
         this.imageArray = _.sortBy(productDetail.result.data.images, 'sort_order');
         for (let variant of this.productDetail.variants) {
           let optionName = "";
-          console.log(variant)
           for (let option of variant.option_values) {
             optionName = optionName + " " + option.label
 
@@ -85,7 +84,6 @@ export class ProductDetailPage {
             price: variant.price
           })
         }
-        console.log(productDetail)
         // console.log(this.variantArray)
       })
       // console.log(this.productDetail)

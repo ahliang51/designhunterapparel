@@ -28,7 +28,7 @@
         <ion-label>
           {{product.name}}
         </ion-label>
-        <ion-label>
+        <!-- <ion-label>
           <div *ngIf="product.sale_price" class="new-price">
             {{product.sale_price | currency }}
           </div>
@@ -36,7 +36,7 @@
           <div [ngClass]="{'old-price' : product.sale_price}">
             {{product.price | currency}}
           </div>
-        </ion-label>
+        </ion-label> -->
       </ion-col>
     </ion-row>
   </ion-grid>
