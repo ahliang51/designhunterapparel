@@ -30,6 +30,13 @@ export class StoreProvider {
       .map(res => res.json());
   }
 
+  retrievePages() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(vars.apiUrl + '/store/pages', { headers: headers })
+      .map(res => res.json());
+  }
+
   retrieveBanners() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
